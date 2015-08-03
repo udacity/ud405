@@ -3,7 +3,7 @@
 <module rename-to="html">
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 
-    <inherits name='com.udacity.gamedev.Icicles.GdxDefinition' />
+    <inherits name='com.udacity.gamedev.icicles.GdxDefinition' />
     
     <collapse-all-properties />
     

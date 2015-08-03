@@ -4,7 +4,7 @@ sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	mainClassName = "com.udacity.gamedev.Icicles.IOSLauncher"
+	mainClassName = "com.udacity.gamedev.icicles.IOSLauncher"
 }
 
 launchIPhoneSimulator.dependsOn build

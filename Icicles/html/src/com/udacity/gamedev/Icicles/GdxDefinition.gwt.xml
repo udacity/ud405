@@ -4,7 +4,7 @@
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 
 	<inherits name='IciclesGame' />
-	<entry-point class='com.udacity.gamedev.Icicles.client.HtmlLauncher' />
+	<entry-point class='com.udacity.gamedev.icicles.client.HtmlLauncher' />
 	
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
 </module>

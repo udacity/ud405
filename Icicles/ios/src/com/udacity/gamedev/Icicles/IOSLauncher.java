@@ -1,11 +1,11 @@
-package com.udacity.gamedev.Icicles;
+package com.udacity.gamedev.icicles;
 
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.udacity.gamedev.Icicles.IciclesGame;
+import com.udacity.gamedev.icicles.IciclesGame;
 
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override

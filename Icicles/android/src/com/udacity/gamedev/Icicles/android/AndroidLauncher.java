@@ -1,10 +1,10 @@
-package com.udacity.gamedev.Icicles.android;
+package com.udacity.gamedev.icicles.android;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.udacity.gamedev.Icicles.IciclesGame;
+import com.udacity.gamedev.icicles.IciclesGame;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
