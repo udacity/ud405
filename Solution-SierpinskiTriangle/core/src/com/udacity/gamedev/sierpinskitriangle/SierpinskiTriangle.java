@@ -22,7 +22,7 @@ public class SierpinskiTriangle extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shapeRenderer.begin(ShapeType.Filled);
 
-        
+
 
 
 
