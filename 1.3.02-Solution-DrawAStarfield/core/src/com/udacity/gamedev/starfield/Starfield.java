@@ -37,7 +37,7 @@ public class Starfield extends ApplicationAdapter {
         // TODO: Figure out how many stars to draw. You'll need the screen dimensions, which you can get using Gdx.graphics.getWidth() and Gdx.graphics.getHeight().
         int screenWidth = Gdx.graphics.getWidth();
         int screenHeight = Gdx.graphics.getHeight();
-        int starCount =(int)(screenHeight * screenWidth * density);
+        int starCount = (int)(screenHeight * screenWidth * density);
         // TODO: Create a new array of Vector2's to hold the star positions
         stars = new Array<Vector2>(starCount);
         // TODO: Use Random to fill the array of star positions
@@ -74,3 +74,6 @@ public class Starfield extends ApplicationAdapter {
         super.dispose();
     }
 }
+
+// TODO: Challenge - Make technicolor stars using shapeRenderer.setColor();
+// TODO: Challenge - Draw the Milky Way using a band of denser stars

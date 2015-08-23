@@ -9,8 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class DrawASpiral extends ApplicationAdapter {
 
-    ShapeRenderer shapeRenderer;
-    private static final int SPIRAL_COUNT = 20;
+        ShapeRenderer shapeRenderer;
+    private static final int COILS = 20;
 
     @Override
     public void create () {
@@ -22,23 +22,24 @@ public class DrawASpiral extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
         shapeRenderer.begin(ShapeType.Line);
+
         int screenWidth = Gdx.graphics.getWidth();
         int screenHeight = Gdx.graphics.getHeight();
-        int xStep = screenWidth / 2 / SPIRAL_COUNT;
-        int yStep = screenHeight /2 /SPIRAL_COUNT;
+        int xStep = screenWidth / 2 / COILS;
+        int yStep = screenHeight / 2 / COILS;
 
-
-        for (int i = 0; i < SPIRAL_COUNT; i++){
+        for (int i = 0; i < COILS; i++){
 
             int xOffset = xStep * i;
             int yOffset = yStep * i;
 
-            Vector2 point1 = new Vector2(xOffset-xStep, yOffset);
+            // TODO: Make this coil reach back to the outer coil
+            Vector2 point1 = new Vector2(xOffset - xStep, yOffset);
             Vector2 point2 = new Vector2(screenWidth - xOffset, yOffset);
             Vector2 point3 = new Vector2(screenWidth - xOffset, screenHeight - yOffset);
             Vector2 point4 = new Vector2(xOffset, screenHeight - yOffset);
+            // TODO: Make this coil stop before connecting back to itself
             Vector2 point5 = new Vector2(xOffset, yOffset + yStep);
 
             shapeRenderer.line(point1, point2);
@@ -52,3 +53,6 @@ public class DrawASpiral extends ApplicationAdapter {
         shapeRenderer.end();
     }
 }
+
+// TODO: Challenge - Add truncated corners to the spiral
+// TODO: Challenge - 

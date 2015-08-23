@@ -6,8 +6,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-// TODO: Note that we're using ApplicationAdapter instead of ApplicationListener so we don't have
-// to provide a bunch of empty implementations of callbacks we're not using
+/*
+TODO: Note that we're using ApplicationAdapter instead of ApplicationListener
+
+In this demo we're using ShapeRenderer to draw a single point
+
+
+*/
 
 public class PointDrawing extends ApplicationAdapter {
 
@@ -21,7 +26,7 @@ public class PointDrawing extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        //TODO: 2. Since an inopportune garbage collection can kill a ton of frames, we have to manage  our own memory in some places. LibGDX provides a bunch of memory managed collections to help with this.
+        //TODO: 2. Since an inopportune garbage collection can kill a ton of frames, we have to manage our own memory in some places. Note that LibGDX also provides a bunch of memory managed collections to help with this.
         shapeRenderer.dispose();
         super.dispose();
     }
