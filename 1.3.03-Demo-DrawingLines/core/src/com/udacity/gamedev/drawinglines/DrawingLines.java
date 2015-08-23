@@ -7,22 +7,37 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+/*
+
+TODO: Start Here!
+
+In this demo, we'll use ShapeRenderer to draw some lines!
+
+ */
+
 public class DrawingLines extends ApplicationAdapter {
 
     ShapeRenderer shapeRenderer;
 
-
-
     @Override
     public void create () {
+        // Remember we want to create our ShapeRenderer outside of our render callback
         shapeRenderer = new ShapeRenderer();
     }
 
     @Override
+    public void dispose() {
+        // Also remember to clean up
+        shapeRenderer.dispose();
+        super.dispose();
+    }
+
+    @Override
     public void render () {
+        // As always, first we clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        // Then we start our shapeRenderer batch, this time with ShapeType.Line
         shapeRenderer.begin(ShapeType.Line);
         // A Simple white line
         shapeRenderer.setColor(Color.WHITE);
