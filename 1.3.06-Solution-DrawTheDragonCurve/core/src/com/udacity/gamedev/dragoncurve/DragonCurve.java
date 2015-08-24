@@ -25,7 +25,6 @@ public class DragonCurve extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shapeRenderer.begin(ShapeType.Line);
         shapeRenderer.polyline(dragonCurve);
-
         shapeRenderer.end();
     }
 }

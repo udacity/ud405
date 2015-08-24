@@ -55,4 +55,3 @@ public class DrawASpiral extends ApplicationAdapter {
 }
 
 // TODO: Challenge - Add truncated corners to the spiral
-// TODO: Challenge - 
