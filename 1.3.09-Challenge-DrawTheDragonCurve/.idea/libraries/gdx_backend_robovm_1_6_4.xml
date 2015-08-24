@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="gdx-backend-robovm-1.6.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-robovm/1.6.4/f9667e1e7be75ea0a7a702dc28da87661b37b2eb/gdx-backend-robovm-1.6.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-robovm/1.6.4/8ed7bd61fbed8414526de89d0c529727f823ead8/gdx-backend-robovm-1.6.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="ce3530afe76cdb08f65f330d8f88364c36566a4a">
+        <dex dex="/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/android/build/intermediates/pre-dexed/debug/core-1.0-cf5d0ec870d684ce17e64fe9db6de8ed5e19a5fe.jar" />
+    </item>
+
+</items>

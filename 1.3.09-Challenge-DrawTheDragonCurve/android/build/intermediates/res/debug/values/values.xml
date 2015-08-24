@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/android/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">DragonCurve</string>
+    <!-- From: file:/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/android/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="GdxTheme" parent="android:Theme">
+		<item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

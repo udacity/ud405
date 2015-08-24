@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/android/assets"><file name="badlogic.jpg" path="/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/android/assets/badlogic.jpg"/></source></dataSet><dataSet config="debug"><source path="/Users/silver/Desktop/2D-Game-Dev/1.3.06-Solution-DrawTheDragonCurve/android/src/debug/assets"/></dataSet></merger>
