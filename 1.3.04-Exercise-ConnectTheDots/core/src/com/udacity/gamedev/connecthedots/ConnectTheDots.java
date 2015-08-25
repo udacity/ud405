@@ -40,7 +40,7 @@ public class ConnectTheDots extends ApplicationAdapter {
 
 
     private float[] vector2ArrayToFloatArray(Array<Vector2> dots){
-        // TODO: Complete this function to translate Array<Vector> to float[]
+        // TODO: Complete this function to translate Array<Vector2> to float[]
         float[] floatDots = new float[dots.size * 2];
 
         return floatDots;
