@@ -1,11 +1,8 @@
 # Importing and Running Your First LibGDX Project
 
-This directory contains a fun little LibGDX demo. This document will explain the project structure, and will explain how to import this project in and this document will explain how to get it
-loaded up
- in Android Studio.
+This directory contains a fun little LibGDX demo project. This document will explore the project structure, explain how to import this project into Android Studio, and show how to run the demo on a desktop, and on an Android device.
 
-
-
+As an aside, every directory in this repository has either a Readme file like this one, or a set of TODOs that explain what's going on. If you learn best by reading docs and playing with code, you can definitely learn what this course has to offer just by exploring this repository.
 
 ### LibGDX App Architecture
 
@@ -13,19 +10,13 @@ A game wants to do a bunch of tasks that are generally very platform dependent. 
 
 Fortunately, there's a better solution. LibGDX is a framework that provides APIs for many of the common tasks necessary to write a game. Those APIs can then be implemented by one of a number of different backends. The result is that one can write a game once, targeting the virtual gaming platform defined by LibGDX, and LibGDX provides the infrastructure to run that game on a number of different platforms.
 
-Specifically, LibGDX defines an `Application` interface, which exposes the capabilities of the virtual gaming platform. Each platform that LibGDX supports provides its own implementation of `Application`.
+Specifically, LibGDX defines an `Application` interface, which exposes the capabilities of the virtual gaming platform. Each platform that LibGDX supports provides its own implementation of `Application`. Each concrete instance of `Application` is created with two objects, a configuration object, that controls things like window size and device orientation, and an implementation of the `ApplicationListener` interface, which is where your code goes. Your `ApplicationListener` has access to the capabilities provided by its host `Application`, and receives callbacks when it's time to do game specific tasks, chief among them, rendering the game.
 
+## LibGDX Project Directory Structure
 
-LibGDX apps share a similar structure, no matter where they're running.
+LibGDX allows us to write a game once, then build versions that work on a bunch of platforms, specifically: desktop computers, Android, iOS, and browsers. Looking at the contents of this directory, we see sub-directories called `android`, `desktop`, `html`, and `ios`. That's where the code lives that will be used to build those particular backends of our game. There's also a sub-directory called `core`. This is where we write the `ApplicationListener`, and all the code that supports it.
 
-
-## What a LibGDX Project Looks Like
-
-LibGDX allows us to write a game once, then build versions that work on a bunch of platforms, specifically: desktop computers, Android, iOS, and browsers. If we check out the contents of this directory, we see a sub-directory called `core`. This is where we write the
-
-## Gradle
-
-
+Then there are a bunch of extra files that have to do with something called "Gradle". Gradle is the build tool that handles all the complexities of compiling and packaging all the different versions of your game. Gradle maintains a model of all the source files and resources that belong to your game, and defines tasks that it can perform on your project, stuff like compiling and running different versions of the project. We won't need to interact directly with Gradle, but it's good to know a bit about what's going on under the hood.
 
 ## Installing Android Studio
 
@@ -58,9 +49,24 @@ The simplest way to run the desktop backend is to ask Gradle to execute the `run
     $ ./gradlew desktop:run
 ```
 
+It's nice to be able to run the project using Ctrl-r, and to do that we can set up a run
+configuration.  Navigate to Run > Edit Configurations...
+
+Then click the plus button at the upper right, and select Gradle in the dropdown. We'll call this run configuration "Desktop". The only other field you need fill out is "Task", which should be "desktop:run". Hit OK, and we're good to go. Unfortunately you'll have to do this with every project you import, as these run configurations are stored in the same place as user-specific stuff like the theme you're use, which it doesn't make sense to check into Git.
+
+Anyway, now check the drop down in the toolbar says Desktop, and hit the green arrow, or just press Ctrl-r. Beautiful Udacity Orange, and, as a bonus, if you click and drag around, you get some awesome particle effects!
+
 ## Running the Android Backend
+
+Runnin the Android backend is acually easier than running the Desktop backend, assuming you've already [set up your Android device](https://www.udacity.com/course/viewer#!/c-ud808/l-4216368924/m-4291353613). Click on the run configuration
+dropdown in the toolbar, and swtich back to "Android", then hit the green button, or press Ctrl-r.
+
+For completeness's sake, if you want to launch the Android backend from the command line, the tasks you need are:
+
+```
+    $ ./gradlew android:installDebug android:run
+```
 
 ## Make a change!
 
-
-
+It's hard to feel like you've really set up a project until you make a change, and see your change reflected in the running code. Let's make a simple change to this project. The background seems a little too, well, orange. Let's swap that out for a nice blue color. If you open up the TODO pane at the bottom of Android Studio, you can jump to the spot where you can make that change. Go ahead and swap out the colors, and make sure the project still runs both on your desktop, and on your Android device.
