@@ -13,7 +13,6 @@ In this demo we're using ShapeRenderer to draw a single point
 
 
 */
-
 public class PointDrawing extends ApplicationAdapter {
 
     private ShapeRenderer shapeRenderer;
