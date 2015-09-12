@@ -2,7 +2,7 @@
 
 ## Computer Screens
 
-Back in the day, using a computer monitor was dangerous business. It meant sitting without flinching while an electron gun fired charged particles at at your face at near the speed of light, only to have them slam into a thin layer of glass covered in poison. Depending on where and how many electrons were shot at you, they would produce explosions of different colors and brightnesses, which your eyes would see as an adorable paperclip or whatever. This system is called a cathode ray tube, and it was the bane of LAN parties everywhere.
+Back in the day, using a computer monitor was dangerous business. It meant sitting without flinching while an electron gun fired charged particles at your face at near the speed of light, only to have them slam into a thin layer of glass covered in poison. Depending on where and how many electrons were shot at you, they would produce explosions of different colors and brightnesses, which your eyes would see as an adorable paperclip or whatever. This system is called a cathode ray tube, and it was the bane of LAN parties everywhere.
 
 Since the screen is a big rectangle and the electron gun could only paint one dot of color at a time, the gun had to traverse the whole screen many times a second. While I'm sure you can think of all sorts of cool space filling curves that would get the job done, the chosen solution was to divide the screen into horizontal scan lines, much like the text in a book, and scan each line from top to bottom. This was called "raster scanning", from the latin "rastrum", or rake. It's like raking a zen garden, but instead of using a rake with many tines, you just have a stick, so you need to make each groove individually.
 
@@ -26,7 +26,13 @@ Now if we want to find information on the Color class, we can just search the pa
 
 > A color class, holding the r, g, b and alpha component as floats in the range [0,1]. All methods perform clamping on the internal values after execution.
 
-From our discussion of human color vision, we know what's going on with the `r`, `g`, and `b` components. But what's this `alpha` thing? [Alpha](https://en.wikipedia.org/wiki/Alpha_compositing) is basicially transparency.
+## Alpha
+
+From our discussion of human color vision, we know what's going on with the `r`, `g`, and `b` components. But what's this `alpha` thing? [Alpha](https://en.wikipedia.org/wiki/Alpha_compositing) is another component of a color that computers use for compositing, which is a fancy way of saying "What happens when you draw stuff on top of other stuff". 
+
+If you draw a shape with `alpha = 1`, then it's totally opaque. Whatever the background color was, it's totally gone. If you draw a shape with `alpha = 0`, you haven't actually changed anything. The new color is totally transparent. If `alpha = 0.5`, then the new color is half the background color, half your new color, so your drawing looks transparent.
+
+For now we're going to be drawing everything fully opaque, so any time you see an `alpha` field, just set it to 1.
 
 ## Rasterization
 
@@ -34,35 +40,36 @@ Everything you see on your computer screen is a rectangular grid of colors. This
 
 To draw shapes like lines, triangles, circles, and other polyhedra, they have to be rasterized. That is, to draw a black arc on a white background, we have to determine for each sample in the raster, whether that sample is inside the arc, or outside, and then color it appropriately. Only then can our shape be drawn to the screen. This process is also called rendering.
 
-This presents a huge challenge though. Which we'll explore by way of a quiz.
+This presents a huge challenge though. Let's say our raster is 1080 pixels by 1920 pixels, we're drawing 20 simple shapes to the screen. Let's then say that for each pixel and each shape, it takes 10 processor cycles to determine if the shape changes the color of the pixel. Finally since we want a silky smooth frame rate, we need to do all this 60 times a second. So, here's the question, how many processor cores running at 3 gigahertz would we need to render this scene?
 
-Let's say our raster is 1080 pixels by 1920 pixels, we're drawing 20 simple shapes to the screen. Let's then say that for each pixel and each shape, it takes 10 processor cycles to determine if the shape changes the color of the pixel. Finally since we want a silky smooth frame rate, we need to do all this 60 times a second. So, here's the question, how many processor cores running at 3 gigahertz would we need to render this scene?
+```
+    1920*1080*60*20*10/3e9 = 8.2944
+```
 
+That's right, even if you have the latest crazy octa-core rig, you still couldn't even render 20 shapes. Well, not using your CPU, anyway. There's gotta be something more interesting going on.
 
+## The CPU, GPU, and OpenGL
+
+The central processing unit on your computer can do just about anything, but even the craziest consumer CPUs only have eight cores these days, which isn't nearly enough to render a complex scene in real time.
+
+Fortunately, your computer (and phone) also has a Graphics Processing Unit, or GPU. GPUs are chips purpose-built to pump out pixels, and some can have thousands of cores. Each of those cores is pretty limited in what it can do, though, and groups of those cores have to work together in lock step, each executing the exact same instructions each clock cycle.
+
+So, while the GPU is less flexible than the CPU, it can spew out pixels at some absurd rate. In the code we write for the CPU the, _what_ we want to draw, and then send those instructions over to the GPU, which will then figure out the actual pixel colors. To do this, we need a language for communicating between the CPU and GPU.
+
+The most common language for this purpose is called the Open Graphics Language, or OpenGL. Smartphones use a slightly scaled down version of this language called OpenGL ES, or OpenGL for embedded systems. If in the Microsoft universe you've heard of DirectX, that's a language that serves essentially the same purpose.
+
+To sum up, the CPU uses OpenGL to tell the GPU what to draw. The GPU builds up the actual array of colors, and ships it to electronics that runs the actual screen.
+
+Brief aside, I'd be failing as a nerd if I didn't mention the fact that you actually do far more with GPUs than color pixels. There's a whole field of General Purpose GPU computing, or GPGPU computing. Algorithms that run on GPUs need to be very clever about how they get those lock-stepping cores to work together, but when they do, they can be extremely fast and, as is often even more important these days, extremely energy efficient.
 
 ## ShapeRenderer
 
+The first thing we're going to do is draw some very simple shapes on the screen, like points, triangles, rectangles, and circles. However, we don't have to interact with OpenGL directly. Instead, we're going to use a LibGDX abstraction called ShapeRenderer. We can ask ShapeRenderer to draw shapes for us, and it  figures out all the complicated OpenGL stuff that has to happen under the hood.
 
+ShapeRenderer works in batches. It's slow to ask OpenGL to draw shapes one at a time, but it's much faster to bundle up all our drawing instructions into a batch, and send that to OpenGL all at once. Further, ShapeRenderer has three modes, and a batch can only contain shapes of one of those types.
 
-
-LibGDX provides APIs for doing useful stuff that abstracts away the underlying system that is actually providing the service. ShapeRenderer is the
-
-
-The first class
-
-Of all the useful APIs offered by LibGDX, the first one we're going to use is called for drawing simple shapes: points, lines, rectangles, and more complex polyhedra.
+I could keep going, but honestly, the official documentation does a lot better job than I could. You can check out the documentation of ShapeRenderer [here](https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/glutils/ShapeRenderer.html), or just by searching for "LibGDX ShapeRenderer".
 
 ## ApplicationListener
 
-Before we start drawing, we need to know a bit about the lifecycle of a LibGDX game, or at least the part of a LibGDX game you're responsible for. The entry point into your code is a class that implements ApplicationListener. 
-
-<dl>
-  <dt><strong>Create</strong></dt>
-  <dd>The new version of this product costs significantly less than the
-      previous one!</dd>
-  <dt><strong>Easier to use</strong></dt>
-  <dd>We've changed the product so that it's much easier to use!</dd>
-  <dt><strong>Safe for kids</strong></dt>
-  <dd>You can leave your kids alone in a room with this product and they
-      won't get hurt (not a guarantee).</dd>
-</dl>
+One last thing to understand before we start drawing, where we actually put our code. The entry point into your code is a class that implements ApplicationListener. I highly reccomend reading the [documentation](https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/ApplicationListener.html) of ApplicationListener, but the best way to learn how it works is to see it in action! To jump to the appropriate file, just open the TODO pane at the bottom left, and click on the entry that says "Start here to learn more about ApplicationListener and ShapeRenderer". 
