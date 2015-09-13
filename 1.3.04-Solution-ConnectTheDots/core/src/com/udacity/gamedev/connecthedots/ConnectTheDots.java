@@ -11,11 +11,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 
-/*
-TODO: Start here
-
-In this exercise we're going to connect the dots, but instead of drawing by hand, we're going to use ShapeRenderer and polyline.
-
+/**
+ * TODO: Start here
+ *
+ * In this exercise we're going to connect the dots, but instead of drawing by hand, we're going to
+ * use ShapeRenderer and polyline.
+ *
+ * TODO: Run what we've got so far
+ *
+ * As you can see, we've got some dots to work with, but no lines yet. Let's fix that!
  */
 
 public class ConnectTheDots extends ApplicationAdapter {
@@ -37,18 +41,22 @@ public class ConnectTheDots extends ApplicationAdapter {
         shapeRenderer = new ShapeRenderer();
     }
 
-
+    /**
+     * TODO: Complete this function to translate Array<Vector2> to float[]
+     *
+     * The first problem is that the dot positions we have to work with are in an array of vectors,
+     * and polyLine wants a flat array of floats. We've set up the array of floats for you, now all
+     * you need to do is iterate over the Array of vectors, and put the x and y components into the
+     * float array. Remember to check out the solution directory if you need help. This is a tricky
+     * one!
+     */
     private float[] vector2ArrayToFloatArray(Array<Vector2> dots){
-        // TODO: Complete this function to translate Array<Vector> to float[]
-
         float[] floatDots = new float[dots.size * 2];
         int i = 0;
-
         for (Vector2 dot : dots){
             floatDots[i++] = dot.x;
             floatDots[i++] = dot.y;
         }
-
         return floatDots;
     }
 
