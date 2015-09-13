@@ -1,5 +1,13 @@
 # Drawing Shapes with LibGDX
 
+Welcome back! I hope you're refreshed after importing your first LibGDX project, and I'm sure you're dying to learn how to create those sweet particle effects! Before we get to that though, we should start out with some simpler drawing.
+
+In this level, we're first going to learn a bit about how the computer drawing pipeline works, with a brief detour into color theory and your eyeballs. Next we'll learn about ShapeRenderer, the class you'll use for drawing simple shapes.
+
+Then we'll talk about the main entry point into LibGDX games: the ApplicationListener interface. We will implement an ApplicationListener, and then use ShapeRenderer to draw some simple shapes, some modern art, and even some fancy fractals!
+
+Let's get started!
+
 ## Computer Screens
 
 Back in the day, using a computer monitor was dangerous business. It meant sitting without flinching while an electron gun fired charged particles at your face at near the speed of light, only to have them slam into a thin layer of glass covered in poison. Depending on where and how many electrons were shot at you, they would produce explosions of different colors and brightnesses, which your eyes would see as an adorable paperclip or whatever. This system is called a cathode ray tube, and it was the bane of LAN parties everywhere.
@@ -69,6 +77,12 @@ The first thing we're going to do is draw some very simple shapes on the screen,
 ShapeRenderer works in batches. It's slow to ask OpenGL to draw shapes one at a time, but it's much faster to bundle up all our drawing instructions into a batch, and send that to OpenGL all at once. Further, ShapeRenderer has three modes, and a batch can only contain shapes of one of those types.
 
 I could keep going, but honestly, the official documentation does a lot better job than I could. You can check out the documentation of ShapeRenderer [here](https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/glutils/ShapeRenderer.html), or just by searching for "LibGDX ShapeRenderer".
+
+## Coordinates and Cameras
+
+So, LibGDX provides us with a way to talk to the GPU without needing to actually use OpenGL. LibGDX also provides us with a rectangular area of the screen we can draw to. On a mobile device, that's generally the entire screen. Now we need to think about how we're going to position stuff on that screen. We clearly need an X Y pair, and the the easiest way to position stuff is by having the X value be the number of pixels from the left edge of the screen, and have the Y value be the number of pixels from the bottom of the screen.
+
+That's the approach we're going to stick with for the rest of this level, but next level we'll start using a much more flexible system called an orthographic camera.
 
 ## ApplicationListener
 

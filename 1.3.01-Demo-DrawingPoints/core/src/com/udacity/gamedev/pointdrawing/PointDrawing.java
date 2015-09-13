@@ -54,12 +54,17 @@ public class PointDrawing implements ApplicationListener {
         Gdx.app.log(TAG, "Resized to width = " + width + " height = " + height);
     }
 
-
     /**
-     * Since an inopportune garbage collection can kill a ton of frames, we have to manage our own
-     * memory in some places. Note that LibGDX also provides a bunch of memory managed collections
-     * to help with this. In this case, we created an instance of shapeRenderer, so we have to clean
-     * it up.
+     * When Java finds that it's running out of memory, it performs a garbage collection to free up
+     * memory held by objects that are no longer in use. Unfortunatly, garbage collection is slow,
+     * and nothing else can happen while the collection is in process. In a game, this can mean a
+     * momentary freeze, which players hate with a burning passion. LibGDX does two things to avoid
+     * this. First, there are a number of places where we need to manage our own memory. Since we
+     * created a ShapeRenderer, we also need to dispose of it, as shown below.
+     *
+     * The other way LibGDX avoids garbage collection hangs is by providing a ton of custom
+     * collections that cleverly manage memory. We'll be using some of those soon.
+     *
      */
     @Override
     public void dispose() {
@@ -69,8 +74,7 @@ public class PointDrawing implements ApplicationListener {
 
     /**
      * Render is where the action happens. By default, render will get called 60 times a second, and
-     * it's the cue that it's time for our game to update itself and draw a new frame. To draw a new
-     * frame, the usual first step is to
+     * it's the cue that it's time for our game to update itself and draw a new frame.
      */
     @Override
     public void render() {
