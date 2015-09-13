@@ -7,6 +7,17 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * TODO: Start here
+ *
+ * In this exercise we have a project that draws a number of concentric rectangles as specified in
+ * the COILS constant. The space between the rectangles is given by xStep and yStep.
+ *
+ * The rectangles are drawn using four lines between five points. Your task is to adjust the first
+ * and last point such that each rectangle turns into a coil that meets up with the neighboring
+ * coils inside and outside of it.
+ */
+
 public class DrawASpiral extends ApplicationAdapter {
 
         ShapeRenderer shapeRenderer;
