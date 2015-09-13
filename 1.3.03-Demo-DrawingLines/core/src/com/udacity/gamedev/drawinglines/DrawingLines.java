@@ -7,12 +7,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-/*
-
-TODO: Start Here!
-
-In this demo, we'll use ShapeRenderer to draw some lines!
-
+/**
+ * TODO: Start Here!
+ *
+ * In this demo, we'll use ShapeRenderer to draw some lines! We'll use most of the line drawing
+ * methods offered by ShapeRenderer, but remember to check out the Javadocs for the full story. If
+ * you're lazy, you can just Google "LibGDX ShapeRenderer", and you'll find what you're looking
+ * for!
  */
 
 public class DrawingLines extends ApplicationAdapter {
@@ -20,7 +21,7 @@ public class DrawingLines extends ApplicationAdapter {
     ShapeRenderer shapeRenderer;
 
     @Override
-    public void create () {
+    public void create() {
         // Remember we want to create our ShapeRenderer outside of our render callback
         shapeRenderer = new ShapeRenderer();
     }
@@ -33,7 +34,7 @@ public class DrawingLines extends ApplicationAdapter {
     }
 
     @Override
-    public void render () {
+    public void render() {
         // As always, first we clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -52,7 +53,7 @@ public class DrawingLines extends ApplicationAdapter {
         shapeRenderer.line(30, 0, 130, 100, Color.BLUE, Color.RED);
         // The last interesting thing we can do is draw a bunch of connected line segments using polyline
         // First we set up the list of vertices, where the even positions are x coordinates, and the odd positions are the y coordinates
-        float[] verticies =  {100, 200, 300, 300, 200, 300, 300, 200};
+        float[] verticies = {100, 200, 300, 300, 200, 300, 300, 200};
         shapeRenderer.polyline(verticies);
         // Finally, as always, we end the batch
         shapeRenderer.end();
