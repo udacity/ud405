@@ -16,6 +16,7 @@ public class CheckerBoard {
                 xIndex++;
                 if ((xIndex + yIndex) % 2 == 0){
                     renderer.rect(xStart, yStart, squareSize, squareSize);
+
                 }
             }
         }
