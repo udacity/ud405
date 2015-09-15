@@ -74,7 +74,7 @@ Brief aside, I'd be failing as a nerd if I didn't mention the fact that you actu
 
 The first thing we're going to do is draw some very simple shapes on the screen, like points, triangles, rectangles, and circles. However, we don't have to interact with OpenGL directly. Instead, we're going to use a LibGDX abstraction called ShapeRenderer. We can ask ShapeRenderer to draw shapes for us, and it  figures out all the complicated OpenGL stuff that has to happen under the hood.
 
-ShapeRenderer works in batches. It's slow to ask OpenGL to draw shapes one at a time, but it's much faster to bundle up all our drawing instructions into a batch, and send that to OpenGL all at once. Further, ShapeRenderer has three modes, and a batch can only contain shapes of one of those types.
+ShapeRenderer works in batches. It's slow to ask OpenGL to draw shapes one at a time, but it's much faster to bundle up all our drawing instructions into a batch, and send that to OpenGL all at once. Further, ShapeRenderer has three modes, point, line, and filled, and a batch can only contain shapes of one of those types.
 
 I could keep going, but honestly, the official documentation does a lot better job than I could. You can check out the documentation of ShapeRenderer [here](https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/glutils/ShapeRenderer.html), or just by searching for "LibGDX ShapeRenderer".
 
@@ -86,4 +86,4 @@ That's the approach we're going to stick with for the rest of this level, but ne
 
 ## ApplicationListener
 
-One last thing to understand before we start drawing, where we actually put our code. The entry point into your code is a class that implements ApplicationListener. I highly reccomend reading the [documentation](https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/ApplicationListener.html) of ApplicationListener, but the best way to learn how it works is to see it in action! To jump to the appropriate file, just open the TODO pane at the bottom left, and click on the entry that says "Start here to learn more about ApplicationListener and ShapeRenderer". 
+One last thing to understand before we start drawing, where we actually put our code.  I highly recommend reading the [documentation](https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/ApplicationListener.html) of ApplicationListener, but the best way to learn how it works is to see it in action! To jump to the appropriate file, just open the TODO pane at the bottom left, and click on the entry that says "Start here to learn more about ApplicationListener and ShapeRenderer". 
