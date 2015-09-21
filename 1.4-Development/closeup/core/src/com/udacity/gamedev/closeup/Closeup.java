@@ -58,7 +58,7 @@ public class Closeup extends ApplicationAdapter {
     public void dispose() {
         renderer.dispose();
     }
-    
+
     /**
      * There are two new things we need to do when using a camera. The first is calling
      * camera.update(). Whenever we adjust the properties of a camera (like its position), it needs

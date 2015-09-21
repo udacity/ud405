@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+/**
+ * TODO: Start here */
+
+
 public class OrthographicProjection extends ApplicationAdapter {
 
     ShapeRenderer renderer;
@@ -16,13 +20,13 @@ public class OrthographicProjection extends ApplicationAdapter {
     public void create() {
         renderer = new ShapeRenderer();
         demoCamera = new DemoCamera();
+        // Tell LibGDX that demoCamera knows what to do with keypresses
         Gdx.input.setInputProcessor(demoCamera);
     }
 
     @Override
     public void resize(int width, int height) {
         demoCamera.resize(width, height);
-
     }
 
     @Override

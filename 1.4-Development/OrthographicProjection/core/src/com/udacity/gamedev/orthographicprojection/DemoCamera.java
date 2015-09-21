@@ -11,17 +11,27 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 /**
- * This class provides two cameras, a camera that draws pixel for pixel with the display, and a closeup camera that can be moved around the screen and zoomed. When in overview mode, the field of view of the closeup camera is drawn on the scene.
+ * TODO: Check this out second
+ *
+ * This class provides two cameras, a camera that draws pixel for pixel with the display, and a
+ * closeup camera that can be moved around the screen and zoomed. When in overview mode, the field
+ * of view of the closeup camera is drawn on the scene.
  *
  * Controls:
  *
  * Space: Switch between overview and closeup camera's
+ *
  * Arrow keys: Move the closeup camera
+ *
  * W/S: Grow and shrink the closeup camera's viewport height
+ *
  * D/A: Grow and shrink the closeup camera's viewport width
+ *
  * Z/X: Zoom in and out, respecting aspect ratio
+ *
  * R: Reset
- * F: Restore the proper aspect ratio *
+ *
+ * F: Restore the proper aspect ratio
  */
 public class DemoCamera extends InputAdapter {
 
@@ -43,7 +53,7 @@ public class DemoCamera extends InputAdapter {
         overviewCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
-    public void resize(float width, float height){
+    public void resize(float width, float height) {
         overviewCamera.setToOrtho(false, width, height);
     }
 
@@ -87,7 +97,6 @@ public class DemoCamera extends InputAdapter {
             closeupCamera.rotate(ROTATION_RATE * delta);
         }
 
-
         // Viewport size (ignoring aspect ratio)
         if (Gdx.input.isKeyPressed(Keys.W)) {
             closeupCamera.viewportHeight += SCALE_RATE * delta;
@@ -103,23 +112,23 @@ public class DemoCamera extends InputAdapter {
         }
 
         // Zoom
-        if (Gdx.input.isKeyPressed(Keys.Z)){
+        if (Gdx.input.isKeyPressed(Keys.Z)) {
             proportionalZoom(-delta);
         }
 
-        if (Gdx.input.isKeyPressed(Keys.X)){
+        if (Gdx.input.isKeyPressed(Keys.X)) {
             proportionalZoom(delta);
         }
         closeupCamera.update();
     }
 
-    private void proportionalZoom(float delta){
+    private void proportionalZoom(float delta) {
         float aspectRatio = overviewCamera.viewportWidth / overviewCamera.viewportHeight;
         closeupCamera.viewportWidth += SCALE_RATE * delta;
-        closeupCamera.viewportHeight += SCALE_RATE/ aspectRatio * delta;
+        closeupCamera.viewportHeight += SCALE_RATE / aspectRatio * delta;
     }
 
-    private void fixAspectRatio(){
+    private void fixAspectRatio() {
         float aspectRatio = overviewCamera.viewportWidth / overviewCamera.viewportHeight;
         closeupCamera.viewportHeight = closeupCamera.viewportWidth / aspectRatio;
         closeupCamera.update();
