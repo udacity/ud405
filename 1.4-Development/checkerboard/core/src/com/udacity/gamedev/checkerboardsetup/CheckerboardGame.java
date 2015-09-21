@@ -3,26 +3,30 @@ package com.udacity.gamedev.checkerboardsetup;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 
+
+
+
+
+
 public class CheckerboardGame extends ApplicationAdapter {
 
     ShapeRenderer renderer;
-    SpriteBatch batch;
+
+    static final float WORLD_WIDTH = 20;
+    static final float WORLD_HEIGHT = 15;
 
     @Override
     public void create () {
         renderer = new ShapeRenderer();
-        batch = new SpriteBatch();
     }
 
     @Override
     public void dispose() {
         renderer.dispose();
-        batch.dispose();
         super.dispose();
     }
 
@@ -32,12 +36,10 @@ public class CheckerboardGame extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         Vector2 bottomLeft = new Vector2(0, 0);
-        Vector2 topRight = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        Vector2 topRight = new Vector2(WORLD_WIDTH, WORLD_HEIGHT);
 
         renderer.begin(ShapeType.Filled);
-        batch.begin();
-        CheckerBoard.render(renderer, batch, bottomLeft, topRight, 100);
+        CheckerBoard.render(renderer, bottomLeft, topRight, 1);
         renderer.end();
-        batch.end();
     }
 }
