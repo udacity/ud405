@@ -2,26 +2,93 @@ package com.udacity.gamedev.viewportsdemo;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
+
+/**
+ * TODO: Start Here!
+ *
+ * In this demo we'll explore the effect of using a Viewport to manage a camera.
+ */
+
+
 
 public class ViewportsDemo extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
+    public static final String TAG = ViewportsDemo.class.getName();
+
+    private static final float WORLD_WIDTH = 16;
+    private static final float WORLD_HEIGHT = 9;
+
+    OrthographicCamera camera;
+    Viewport viewport;
+
+    ShapeRenderer renderer;
+
+    /**
+     * Uncomment the following viewports one at a time, and check out the effect when you resise the desktop window.
+     * 
+     *
+     */
+    @Override
+    public void create() {
+        camera = new OrthographicCamera();
+        viewport = new ScreenViewport(camera);
+//        viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+//        viewport = new FillViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+//        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+//        viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+        viewport.setScreenBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        renderer = new ShapeRenderer();
+    }
+
+    @Override
+    public void dispose() {
+        renderer.dispose();
+    }
+
+    /**
+     * When the screen is resized, we need to inform the viewport. Note that when using an
+     * ExtendViewport, the world size might change as well.
+     */
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+        Gdx.app.log(TAG, "Viewport world dimensions: (" + viewport.getWorldHeight() + ", " + viewport.getWorldWidth() + ")");
+    }
+
+    /**
+     * When using a viewport, instead of calling camera.update(), we just call viewport.apply()
+     */
+    @Override
+    public void render() {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        viewport.apply();
+        renderer.setProjectionMatrix(camera.combined);
+        renderer.begin(ShapeType.Filled);
+        renderer.setColor(Color.GREEN);
+        renderer.rect(-10, -10, WORLD_WIDTH + 20, WORLD_HEIGHT + 20);
+        renderWorld();
+        renderer.end();
+    }
+
+    void renderWorld() {
+        for (int yStart = 0; yStart < WORLD_HEIGHT; yStart += 1) {
+            for (int xStart = 0; xStart < WORLD_WIDTH; xStart += 1) {
+                if ((yStart + xStart) % 2 == 0) {
+                    renderer.setColor(Color.WHITE);
+                } else {
+                    renderer.setColor(Color.BLACK);
+                }
+                renderer.rect(xStart, yStart, 1, 1);
+            }
+        }
+    }
 }
