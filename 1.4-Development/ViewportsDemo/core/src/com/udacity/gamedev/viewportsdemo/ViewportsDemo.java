@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * TODO: Start Here!
  *
  * In this demo we'll explore the effect of using a Viewport to manage a camera.
+ *
+ * We start with a world containing a 16x9 checkerboard, with an apron of neon green.
  */
 
 
@@ -32,9 +34,7 @@ public class ViewportsDemo extends ApplicationAdapter {
     ShapeRenderer renderer;
 
     /**
-     * Uncomment the following viewports one at a time, and check out the effect when you resise the desktop window.
-     * 
-     *
+     * Uncomment the following viewports one at a time, and check out the effect when you resize the desktop window.
      */
     @Override
     public void create() {
