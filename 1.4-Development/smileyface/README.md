@@ -1,6 +1,6 @@
 # Smiley Face!
 
-In this exercise, we'll use `ShapeRenderer` to draw the circles and arc needed to draw a smiley face. We'll also use an `OrthographicCamera` and an `ExtendViewport` to frame the scene. 
+Let's put together what we've learned to draw a smiley face. We'll use `ShapeRenderer` to draw the circles and arcs, and we'll also use an `OrthographicCamera` and an `ExtendViewport` to frame the scene. 
 
-Check out the TODO pane to get started!
+Check out the TODOs to get started!
 
