@@ -10,9 +10,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * TODO: Start here
  *
- * Let's do the minimal text example! Note that we use a SpriteBatch to draw, instead of a ShapeRenderer.
+ * Let's do the minimal text example! Note that we use a SpriteBatch to draw, instead of a
+ * ShapeRenderer.
  *
- * One more concept we haven't yet covered is filtering. That's how we determine what to do when we draw a bitmap at a larger size than it was intended.
+ * One more concept we haven't yet covered is filtering. That's how we determine what to do when we
+ * draw a bitmap at a larger size than it was intended.
  */
 
 public class TextDemo extends ApplicationAdapter {
@@ -28,7 +30,7 @@ public class TextDemo extends ApplicationAdapter {
         // Scale it up
         font.getData().setScale(3);
         // Set the filter
-        font.getRegion().getTexture().setFilter(TextureFilter.Linear,TextureFilter.Linear);
+        font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     }
 
     /**

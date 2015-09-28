@@ -4,9 +4,9 @@ import com.badlogic.gdx.Game;
 
 public class ScreenSaver extends Game {
 
-	@Override
-	public void create () {
-		setScreen(new ScreenSaverScreen());
-	}
+    @Override
+    public void create() {
+        setScreen(new ScreenSaverScreen());
+    }
 
 }
