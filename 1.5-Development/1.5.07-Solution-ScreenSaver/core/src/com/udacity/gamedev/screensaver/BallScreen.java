@@ -18,7 +18,9 @@ public class BallScreen extends ScreenAdapter implements InputProcessor {
     ExtendViewport viewport;
     BouncingBall ball;
 
-    private static final int BALL_COUNT = 2000;
+    // TODO: When a single ball is working try a bunch of balls.
+    // TODO: See how many balls you can add before your computer starts slowing down.
+    private static final int BALL_COUNT = 100000;
     Array<BouncingBall> balls;
 
     @Override

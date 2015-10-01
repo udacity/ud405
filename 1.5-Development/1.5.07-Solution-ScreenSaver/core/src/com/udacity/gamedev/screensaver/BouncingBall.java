@@ -47,14 +47,9 @@ public class BouncingBall {
         velocity.y = KICK_VELOCITY * MathUtils.sin(angle);
     }
 
-    public void resize(float worldWidth, float worldHeight){
-        radius = RADIUS_FACTOR * Math.min(worldWidth, worldHeight);
-    }
-
     public void update(float delta, Viewport viewport) {
 
-        //
-
+        // TODO: Update the ball's position using its velocity
         position.x += delta * velocity.x;
         position.y += delta * velocity.y;
 
@@ -71,10 +66,14 @@ public class BouncingBall {
             position.x = viewportWidth - radius;
             velocity.x = -velocity.x;
         }
+
+        // TODO: Make the ball bounce off the bottom of the screen
         if (position.y - radius < 0) {
             position.y = radius;
             velocity.y = -velocity.y;
         }
+
+        // TODO: Make the ball bounce off the top of the screen
         if (position.y + radius > viewportHeight) {
             position.y = viewportHeight - radius;
             velocity.y = -velocity.y;
@@ -86,7 +85,5 @@ public class BouncingBall {
         renderer.setColor(COLOR);
         renderer.circle(position.x, position.y, radius);
     }
-
-
 }
 
