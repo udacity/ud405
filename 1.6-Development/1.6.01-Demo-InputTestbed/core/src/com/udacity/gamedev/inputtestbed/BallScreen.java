@@ -14,8 +14,6 @@ public class BallScreen extends ScreenAdapter {
 
     public static final float WORLD_SIZE = 480.0f;
 
-
-
     ShapeRenderer renderer;
     ExtendViewport viewport;
     BouncingBall ball;
