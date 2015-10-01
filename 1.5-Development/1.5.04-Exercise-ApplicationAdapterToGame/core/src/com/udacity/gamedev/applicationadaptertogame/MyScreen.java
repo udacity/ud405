@@ -21,5 +21,5 @@ package com.udacity.gamedev.applicationadaptertogame;
  */
 
 public class MyScreen {
-    
+
 }
