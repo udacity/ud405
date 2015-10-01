@@ -9,6 +9,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
 
 
+/**
+ * TODO: 2 Check out this screen class second
+ *
+ * Screens are very similar to ApplicationListeners, with a couple differences. Instead of create(),
+ * screens get a show() call. Instead of pause(), screens get a hide() call, and the render() call
+ * received by a screen includes an argument called delta.
+ *
+ * The argument delta is the number of seconds after the previous frame that this frame is expected
+ * to hit the screen. In a normal game, running at 60 frames per second, this will almost always be
+ * 0.0167 seconds, or 16.7 milli-seconds. However, if your game is running on old hardware, or is
+ * just drawing way too much stuff, you may end up with a delta that is larger.
+ *
+ * In this screen, we're creating a BitmapFont and a SpriteBatch, and displaying the delta passed
+ * into the render function. Also, we've included logging on all the Screen callbacks.
+ *
+ * Let's check out FPSScreen.
+ */
+
 public class DeltaScreen implements Screen {
 
     public static final String TAG = DeltaScreen.class.getName();

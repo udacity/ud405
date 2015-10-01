@@ -6,15 +6,15 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 
 /**
- * Created by silver on 9/23/15.
+ * We'll talk about input handling in the next level!
  */
+
 public class ScreenSwitcher extends InputAdapter {
 
     Game game;
     Screen screen1;
     Screen screen2;
     int currentScreen;
-
 
     public ScreenSwitcher(Game game, Screen screen1, Screen screen2) {
         this.game = game;
@@ -36,5 +36,4 @@ public class ScreenSwitcher extends InputAdapter {
         }
         return true;
     }
-
 }
