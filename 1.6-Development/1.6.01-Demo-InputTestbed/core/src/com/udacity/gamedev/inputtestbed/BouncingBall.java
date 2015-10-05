@@ -8,16 +8,26 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.Random;
-
+/**
+ * TODO: Check this out second
+ *
+ * The behavior of this ball should be familiar from the screensaver example. The two new things are
+ * drag, and the periodic kicks the ball relieves to show off that drag.
+ *
+ * If we run this project, we see a little red ball that occasionally gets kicked in a random
+ * direction, the slowly comes to a stop. It kinda looks like an air-hockey table. However, it's not
+ * interactive yet. Let's fix that.
+ */
 
 public class BouncingBall {
 
     private static final Color COLOR = Color.RED;
-    private static final float DRAG = 0.5f;
+    private static final float DRAG = 1.0f;
+
+    // This constant defines how big the ball should be relative to the world size
     private static final float RADIUS_FACTOR = 1.0f / 20;
 
-    private static final float KICK_INTERVAL = 1.0f;
+    private static final float KICK_INTERVAL = 3.0f;
     private static final float KICK_VELOCITY = 500.0f;
 
     long lastKick;
@@ -31,15 +41,14 @@ public class BouncingBall {
         init(viewport);
     }
 
-    private void init(Viewport viewport) {
+    public void init(Viewport viewport) {
         position = new Vector2(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2);
         velocity = new Vector2();
         randomKick();
     }
 
     private void randomKick() {
-        Random random = new Random();
-        float angle = MathUtils.PI2 * random.nextFloat();
+        float angle = MathUtils.PI2 * MathUtils.random();
         velocity.x = KICK_VELOCITY * MathUtils.cos(angle);
         velocity.y = KICK_VELOCITY * MathUtils.sin(angle);
     }
@@ -53,6 +62,7 @@ public class BouncingBall {
             randomKick();
         }
 
+        // Drag is proportional to the current velocity
         velocity.x -= delta * DRAG * velocity.x;
         velocity.y -= delta * DRAG * velocity.y;
 
@@ -83,11 +93,9 @@ public class BouncingBall {
     }
 
     public void render(ShapeRenderer renderer) {
-        renderer.begin(ShapeType.Filled);
+        // This takes advantage of AutoShapeType
+        renderer.set(ShapeType.Filled);
         renderer.setColor(COLOR);
         renderer.circle(position.x, position.y, radius);
-        renderer.end();
     }
-
-
 }
