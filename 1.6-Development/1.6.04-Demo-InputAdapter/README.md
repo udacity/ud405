@@ -1,20 +1,11 @@
-# User Input
+# Input Adapter
 
-Now that we know how to make stuff move, let's make it interactive! There are a ton of different ways to interact with LibGDX games: key presses, your mouse, touches, and even device orientation and acceleration!
+So far we've been using user input by polling for it each frame. The other approach to user input is an event based approach, where we ask to be notified when certain things happen. To do this in LibGDX, we need to create an implementation of the InputProcessor interface, and tell LibGDX to send events our way.
+ 
+Let's reuse that randomKick() method, but this time fire a random kick when the space bar is pressed. 
+ 
+InputProcessor has seven required methods: keyDown, keyUp, keyTyped, touchDown, touchUp, mouseMoved, and scrolled. However, just like ApplicationListener and ApplicationAdapter, there's also a convenience implementation (InputAdapter) that provides blank implementations for all the methods. 
 
-The simplest form of input is just key presses. They offer the user the tightest control, and even if you're building a mobile only game where keypresses aren't relevant, they're still incredibly  convenient for debugging.
+So, we need to do three things: make our BouncingBall class a subclass of InputAdapter, override keyDown and provide the logic to handle the space bar being pressed, in BallScreen, tell LibGDX that we would like input events to be routed to BouncingBall.
 
-There are a couple different things you might want to know about a keypress.
-
-
-Say you're building a platformer and you want to control the left/right movement of the character using the arrow keys. Each frame you're interested in knowing whether those buttons are pressed.
-
-On the other hand, say you want the character to fire a grappling hook when the spacebar is pressed. In this case you don't actually want to check every frame to see if the spacebar is pressed, since it's only relevant the moment the key is pressed. Subsequent frames, you don't care that the spacebar is down. 
-
-We have two different approaches. One where we want to know the state of the inputs every frame, and one where we want to be notified when certain things happen. The former approach is called polling, and the latter approach is known as event-based input.
-
-We'll start with polling, as it's a bit simpler, and will get to event based input later in the level.
-
-# Input Testbed
-
-We'll use the same project for all our exploration 
+Check out the TODOs to see how it's done!

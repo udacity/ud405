@@ -16,6 +16,16 @@ public class BallScreen extends ScreenAdapter {
     ExtendViewport viewport;
     BouncingBall ball;
 
+
+    /**
+     * TODO: Register our InputProcessor with LibGDX
+     *
+     * This is super simple, we just call Gdx.input.setInputProcessor() with our new subclass of
+     * InputAdapter.
+     *
+     * Now if we run the game, everything still works as before: we can scale the ball, we can move
+     * the ball around, but we can also hit space to give the ball a kick!
+     */
     @Override
     public void show() {
         renderer = new ShapeRenderer();

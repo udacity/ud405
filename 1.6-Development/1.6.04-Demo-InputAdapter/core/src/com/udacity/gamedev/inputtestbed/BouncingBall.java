@@ -8,11 +8,16 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
 
+
+/**
+ * TODO: Make Bouncing ball a subclass of InputAdapter
+ *
+ * So far so good. Now let's go override keyDown().
+ */
 
 public class BouncingBall extends InputAdapter {
 
@@ -24,10 +29,7 @@ public class BouncingBall extends InputAdapter {
     private static final float ACCELERATION = 500.0f;
     private static final float MAX_SPEED = 400.0f;
 
-    private static final float KICK_INTERVAL = 3.0f;
     private static final float KICK_VELOCITY = 500.0f;
-
-    long lastKick;
 
     float baseRadius;
     float radiusMultiplier;
@@ -58,32 +60,31 @@ public class BouncingBall extends InputAdapter {
     }
 
 
-
     public void update(float delta, Viewport viewport) {
 
         // Growing and shrinking
-        if (Gdx.input.isKeyPressed(Keys.Z)){
+        if (Gdx.input.isKeyPressed(Keys.Z)) {
             radiusMultiplier += delta * RADIUS_GROWTH_RATE;
         }
-        if (Gdx.input.isKeyPressed(Keys.X)){
+        if (Gdx.input.isKeyPressed(Keys.X)) {
             radiusMultiplier -= delta * RADIUS_GROWTH_RATE;
             radiusMultiplier = Math.max(radiusMultiplier, MIN_RADIUS_MULTIPLIER);
         }
 
         // Movement
-        if (Gdx.input.isKeyPressed(Keys.LEFT)){
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             velocity.x -= delta * ACCELERATION;
 
         }
-        if (Gdx.input.isKeyPressed(Keys.RIGHT)){
+        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             velocity.x += delta * ACCELERATION;
 
         }
-        if (Gdx.input.isKeyPressed(Keys.UP)){
+        if (Gdx.input.isKeyPressed(Keys.UP)) {
             velocity.y += delta * ACCELERATION;
 
         }
-        if (Gdx.input.isKeyPressed(Keys.DOWN)){
+        if (Gdx.input.isKeyPressed(Keys.DOWN)) {
             velocity.y -= delta * ACCELERATION;
 
         }
@@ -91,23 +92,11 @@ public class BouncingBall extends InputAdapter {
         velocity.clamp(0, MAX_SPEED);
 
 
-
-
-
-
-        float secondsSinceLastKick = MathUtils.nanoToSec * (TimeUtils.nanoTime() - lastKick);
-
-        if (secondsSinceLastKick > KICK_INTERVAL) {
-            lastKick = TimeUtils.nanoTime();
-//            randomKick();
-        }
-
         velocity.x -= delta * DRAG * velocity.x;
         velocity.y -= delta * DRAG * velocity.y;
 
         position.x += delta * velocity.x;
         position.y += delta * velocity.y;
-
 
         collideWithWalls(baseRadius * radiusMultiplier, viewport.getWorldWidth(), viewport.getWorldHeight());
     }
@@ -138,21 +127,28 @@ public class BouncingBall extends InputAdapter {
     }
 
 
+    /**
+     * TODO: Override keyDown
+     *
+     * keyDown receives an argument that says what key was pressed. In this case we check to see if
+     * that key was the space bar. If so, we give the ball a random kick.
+     *
+     * The return value of all the InputProcessor methods is a boolean signifying whether the input
+     * event was handled. This becomes relevant when you're dealing with a more complex game where
+     * there might be multiple classes responding to input events. In this case, this is the only
+     * class that cares about input events, so we can go ahead and say we dealt with the event.
+     *
+     * If we run the game right now, this will never be called, because we still need to tell LibGDX
+     * that this class is interested in input events. Let's fix that over in BallScreen.
+     */
+
     @Override
     public boolean keyDown(int keycode) {
-
-        if (keycode == Keys.SPACE){
+        if (keycode == Keys.SPACE) {
             randomKick();
         }
-
-        if (keycode == Keys.R){
-            init(viewport);
-        }
-
         return true;
     }
-
-
 
 
 }
