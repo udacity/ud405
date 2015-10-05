@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
@@ -17,23 +16,21 @@ public class BouncingBall {
 
     private static final Color COLOR = Color.RED;
     private static final float DRAG = 1.0f;
-    private static final float RADIUS_FACTOR = 1.0f / 20;
+
+    private static final float BASE_RADIUS = 20.0f;
     private static final float RADIUS_GROWTH_RATE = 1.5f;
     private static final float MIN_RADIUS_MULTIPLIER = 0.1f;
-    private static final float ACCELERATION = 500.0f;
-    private static final float MAX_SPEED = 400.0f;
 
-    private static final float KICK_INTERVAL = 3.0f;
+    private static final float ACCELERATION = 500.0f;
+    private static final float MAX_SPEED = 1000.0f;
+
     private static final float KICK_VELOCITY = 500.0f;
 
-    long lastKick;
-
-    float baseRadius;
     float radiusMultiplier;
+    float radius;
 
     Vector2 position;
     Vector2 velocity;
-
 
     public BouncingBall(Viewport viewport) {
         init(viewport);
@@ -42,9 +39,9 @@ public class BouncingBall {
     public void init(Viewport viewport) {
         position = new Vector2(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2);
         velocity = new Vector2();
-        baseRadius = RADIUS_FACTOR * Math.min(viewport.getWorldWidth(), viewport.getWorldHeight());
         radiusMultiplier = 1;
-        randomKick();
+        radius = BASE_RADIUS * radiusMultiplier;
+        radiusMultiplier = 1;
     }
 
     private void randomKick() {
@@ -53,8 +50,6 @@ public class BouncingBall {
         velocity.x = KICK_VELOCITY * MathUtils.cos(angle);
         velocity.y = KICK_VELOCITY * MathUtils.sin(angle);
     }
-
-
 
     public void update(float delta, Viewport viewport) {
 
@@ -67,37 +62,34 @@ public class BouncingBall {
             radiusMultiplier = Math.max(radiusMultiplier, MIN_RADIUS_MULTIPLIER);
         }
 
-        // Movement
+        radius = radiusMultiplier * BASE_RADIUS;
+
+        // TODO: Subtract delta * ACCELERATION from velocity.x if the left arrow key is pressed (Hint: Keys.LEFT)
         if (Gdx.input.isKeyPressed(Keys.LEFT)){
             velocity.x -= delta * ACCELERATION;
 
         }
+
+        // TODO: Handle Keys.RIGHT
         if (Gdx.input.isKeyPressed(Keys.RIGHT)){
             velocity.x += delta * ACCELERATION;
 
         }
+
+        // TODO: Handle Keys.UP
         if (Gdx.input.isKeyPressed(Keys.UP)){
             velocity.y += delta * ACCELERATION;
 
         }
+
+        // TODO: Handle Keys.DOWN
         if (Gdx.input.isKeyPressed(Keys.DOWN)){
             velocity.y -= delta * ACCELERATION;
 
         }
 
+        // TODO: Use velocity.clamp() to limit the total speed to MAX_SPEED
         velocity.clamp(0, MAX_SPEED);
-
-
-
-
-
-
-        float secondsSinceLastKick = MathUtils.nanoToSec * (TimeUtils.nanoTime() - lastKick);
-
-        if (secondsSinceLastKick > KICK_INTERVAL) {
-            lastKick = TimeUtils.nanoTime();
-//            randomKick();
-        }
 
         velocity.x -= delta * DRAG * velocity.x;
         velocity.y -= delta * DRAG * velocity.y;
@@ -105,8 +97,7 @@ public class BouncingBall {
         position.x += delta * velocity.x;
         position.y += delta * velocity.y;
 
-
-        collideWithWalls(baseRadius * radiusMultiplier, viewport.getWorldWidth(), viewport.getWorldHeight());
+        collideWithWalls(radius, viewport.getWorldWidth(), viewport.getWorldHeight());
     }
 
     private void collideWithWalls(float radius, float viewportWidth, float viewportHeight) {
@@ -131,8 +122,6 @@ public class BouncingBall {
     public void render(ShapeRenderer renderer) {
         renderer.set(ShapeType.Filled);
         renderer.setColor(COLOR);
-        renderer.circle(position.x, position.y, baseRadius * radiusMultiplier);
+        renderer.circle(position.x, position.y, radius);
     }
-
-
 }

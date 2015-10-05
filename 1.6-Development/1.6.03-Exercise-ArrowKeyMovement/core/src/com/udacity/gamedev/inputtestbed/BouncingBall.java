@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
@@ -17,22 +16,21 @@ public class BouncingBall {
 
     private static final Color COLOR = Color.RED;
     private static final float DRAG = 1.0f;
+
     private static final float BASE_RADIUS = 20.0f;
-    private static final float RADIUS_GROWTH_RATE = 2.5f;
+    private static final float RADIUS_GROWTH_RATE = 1.5f;
     private static final float MIN_RADIUS_MULTIPLIER = 0.1f;
 
-    private static final float KICK_INTERVAL = 3.0f;
+    private static final float ACCELERATION = 500.0f;
+    private static final float MAX_SPEED = 1000.0f;
+
     private static final float KICK_VELOCITY = 500.0f;
-
-    long lastKick;
-
 
     float radiusMultiplier;
     float radius;
 
     Vector2 position;
     Vector2 velocity;
-
 
     public BouncingBall(Viewport viewport) {
         init(viewport);
@@ -43,7 +41,7 @@ public class BouncingBall {
         velocity = new Vector2();
         radiusMultiplier = 1;
         radius = BASE_RADIUS * radiusMultiplier;
-        randomKick();
+        radiusMultiplier = 1;
     }
 
     private void randomKick() {
@@ -53,41 +51,39 @@ public class BouncingBall {
         velocity.y = KICK_VELOCITY * MathUtils.sin(angle);
     }
 
-    /**
-     * TODO: Here's the polling action
-     *
-     * We've defined a base radius for the ball, and we determine the actul radius by multiplying
-     * the base radius by the radius multiplier. We start the radius multiplier at 1.0, and then we
-     * adjust it up or down each frame based on whether or not the Z or X keys are pressed. We also
-     * have a radius growth rate constant that determines how fast the radius multiplier changes.
-     *
-     * Note that we also make sure the radius multiplier can't fall below a certain minimum. That
-     * way we don't end up with an invisible ball with a negative radius.
-     */
     public void update(float delta, Viewport viewport) {
 
-        if (Gdx.input.isKeyPressed(Keys.Z)) {
+        // Growing and shrinking
+        if (Gdx.input.isKeyPressed(Keys.Z)){
             radiusMultiplier += delta * RADIUS_GROWTH_RATE;
         }
-        if (Gdx.input.isKeyPressed(Keys.X)) {
+        if (Gdx.input.isKeyPressed(Keys.X)){
             radiusMultiplier -= delta * RADIUS_GROWTH_RATE;
             radiusMultiplier = Math.max(radiusMultiplier, MIN_RADIUS_MULTIPLIER);
         }
+
         radius = radiusMultiplier * BASE_RADIUS;
 
-        float secondsSinceLastKick = MathUtils.nanoToSec * (TimeUtils.nanoTime() - lastKick);
+        // TODO: Subtract delta * ACCELERATION from velocity.x if the left arrow key is pressed (Hint: Keys.LEFT)
 
-        if (secondsSinceLastKick > KICK_INTERVAL) {
-            lastKick = TimeUtils.nanoTime();
-            randomKick();
-        }
+
+        // TODO: Handle Keys.RIGHT
+
+
+        // TODO: Handle Keys.UP
+
+
+        // TODO: Handle Keys.DOWN
+
+
+        // TODO: Use velocity.clamp() to limit the total speed to MAX_SPEED
+
 
         velocity.x -= delta * DRAG * velocity.x;
         velocity.y -= delta * DRAG * velocity.y;
 
         position.x += delta * velocity.x;
         position.y += delta * velocity.y;
-
 
         collideWithWalls(radius, viewport.getWorldWidth(), viewport.getWorldHeight());
     }
@@ -116,6 +112,4 @@ public class BouncingBall {
         renderer.setColor(COLOR);
         renderer.circle(position.x, position.y, radius);
     }
-
-
 }
