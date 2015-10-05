@@ -18,19 +18,22 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  *
  * We don't have step-by-step TODOs for this one, since the aim is for you to remember the steps for
  * setting up a ShapeRenderer and be able to set one up on your own. Of course, the solution is
- * still available, if you run into anything confusing.
+ * available if you run into anything confusing.
  */
 public class StickFigure extends ApplicationAdapter {
 
+    // Declare
     ShapeRenderer renderer;
 
     @Override
     public void create() {
+        // Initialize
         renderer = new ShapeRenderer();
     }
 
     @Override
     public void dispose() {
+        // Dispose
         renderer.dispose();
     }
 
@@ -40,16 +43,20 @@ public class StickFigure extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.begin(ShapeType.Filled);
+
         // Head
         renderer.circle(100, 100, 10);
         renderer.end();
 
         renderer.begin(ShapeType.Line);
+
         // Torso
         renderer.line(100, 50, 100, 100);
+
         // Legs
         renderer.line(85, 35, 100, 50);
         renderer.line(115, 35, 100, 50);
+
         // Arms
         renderer.line(85, 70, 100, 85);
         renderer.line(115, 70, 100, 85);

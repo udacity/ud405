@@ -27,7 +27,7 @@ public class SierpinskiTriangle extends ApplicationAdapter {
     @Override
     public void create() {
         renderer = new ShapeRenderer();
-        viewport = new FitViewport(10, 10);
+        viewport = new FitViewport(SIZE, SIZE);
     }
 
     @Override

@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 /**
- * TODO: Start here */
+ * TODO: Start here
+ */
 
 
 public class OrthographicProjection extends ApplicationAdapter {
@@ -40,16 +41,19 @@ public class OrthographicProjection extends ApplicationAdapter {
     }
 
     /**
-     * This method renders a few shapes for us to try our camera on. Note that we're using a Bezier curve, which is a way to draw smooth curves. For more information on Bezier curves, check out: https://en.wikipedia.org/wiki/B%C3%A9zier_curve
+     * This method renders a few shapes for us to try our camera on. Note that we're using a Bezier
+     * curve, which is a way to draw smooth curves. For more information on Bezier curves, check
+     * out: https://en.wikipedia.org/wiki/B%C3%A9zier_curve
      *
-     * Also note that a line is a line is a line. No matter how much we zoom in, a line is always just one pixel wide.
+     * Also note that a line is a line is a line. No matter how much we zoom in, a line is always
+     * just one pixel wide.
      */
     private void renderTestScene(ShapeRenderer renderer) {
         renderer.begin(ShapeType.Filled);
         renderer.setColor(Color.GREEN);
         renderer.circle(100, 100, 90);
         renderer.setColor(Color.RED);
-        renderer.rect(200, 10, 200, 200 );
+        renderer.rect(200, 10, 200, 200);
         renderer.setColor(Color.YELLOW);
         renderer.triangle(10, 200, 200, 200, 100, 400);
         renderer.end();

@@ -7,9 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-
-import java.util.Random;
 
 
 /**
@@ -105,12 +104,11 @@ public class WordCloud extends ApplicationAdapter {
         }
 
         static Word randomWord(float minScale, float maxScale) {
-            Random random = new Random();
-            float x = random.nextFloat();
-            float y = random.nextFloat();
-            float scale = minScale + (maxScale - minScale) * random.nextFloat();
-            Color color = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1);
-            String letters = WORDS[random.nextInt(WORDS.length)];
+            float x = MathUtils.random(-.25f, .75f);
+            float y = MathUtils.random();
+            float scale = minScale + (maxScale - minScale) * MathUtils.random();
+            Color color = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
+            String letters = WORDS[MathUtils.random(WORDS.length - 1)];
             return new Word(x, y, scale, color, letters);
         }
     }

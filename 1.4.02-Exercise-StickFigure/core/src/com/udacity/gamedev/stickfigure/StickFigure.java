@@ -16,11 +16,11 @@ import com.badlogic.gdx.graphics.GL20;
  *
  * We don't have step-by-step TODOs for this one, since the aim is for you to remember the steps for
  * setting up a ShapeRenderer and be able to set one up on your own. Of course, the solution is
- * still available, if you run into anything confusing.
+ * available if you run into anything confusing.
  */
 public class StickFigure extends ApplicationAdapter {
 
-        @Override
+    @Override
     public void create() {
 
     }

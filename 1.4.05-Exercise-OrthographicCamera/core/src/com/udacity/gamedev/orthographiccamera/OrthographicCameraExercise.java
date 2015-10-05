@@ -14,9 +14,6 @@ import com.badlogic.gdx.utils.TimeUtils;
  *
  * In this exercise, you'll create an OrthographicCamera, and use it to zoom in on a moving circle
  */
-
-
-
 public class OrthographicCameraExercise extends ApplicationAdapter {
 
     private static final float BALL_RADIUS = 20;
@@ -26,11 +23,10 @@ public class OrthographicCameraExercise extends ApplicationAdapter {
     private static final float X_CENTER = 100;
     private static final float Y_CENTER = 100;
 
-
     ShapeRenderer renderer;
     long timeCreated;
 
-    //TODO: Declare OrthographicCamera
+    //TODO: Declare an OrthographicCamera
 
 
     @Override
@@ -41,7 +37,7 @@ public class OrthographicCameraExercise extends ApplicationAdapter {
         // TODO: Initialize the camera
 
 
-        // TODO: Set the camera's position to the center of the circle's movement
+        // TODO: Set the camera's position to the center of the circle's movement (X_CENTER, Y_CENTER)
 
     }
 

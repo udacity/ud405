@@ -32,7 +32,7 @@ public class Closeup extends ApplicationAdapter {
 
     static final float STAR_CENTER_X = -900;
     static final float STAR_CENTER_Y = 240;
-    static final float STAR_RAIDUS = 1000;
+    static final float STAR_RADIUS = 1000;
     static final float PLANET_CENTER_X = 640;
     static final float PLANET_CENTER_Y = 240;
     static final float PLANET_RADIUS = 10;
@@ -86,7 +86,7 @@ public class Closeup extends ApplicationAdapter {
 
         // Draw the star
         renderer.setColor(Color.YELLOW);
-        renderer.circle(STAR_CENTER_X, STAR_CENTER_Y, STAR_RAIDUS, SEGMENTS);
+        renderer.circle(STAR_CENTER_X, STAR_CENTER_Y, STAR_RADIUS, SEGMENTS);
 
         // Draw the planet
         renderer.setColor(Color.GREEN);
@@ -147,12 +147,12 @@ public class Closeup extends ApplicationAdapter {
      * camera to the right, so we can see the planet again.
      */
     private void trackStar(OrthographicCamera camera, float aspectRatio) {
-        camera.viewportHeight = 2 * STAR_RAIDUS;
+        camera.viewportHeight = 2 * STAR_RADIUS;
         // This will stretch the star, since the aspect ratio doesn't match
-//        camera.viewportWidth = 2 * STAR_RAIDUS;
+//        camera.viewportWidth = 2 * STAR_RADIUS;
         camera.viewportWidth = aspectRatio * camera.viewportHeight;
         camera.position.set(STAR_CENTER_X, STAR_CENTER_Y, 0);
-        camera.translate(STAR_RAIDUS * (aspectRatio - 1), 0);
+        camera.translate(STAR_RADIUS * (aspectRatio - 1), 0);
     }
 
     /**
@@ -174,9 +174,9 @@ public class Closeup extends ApplicationAdapter {
      * given that rectangles are drawn by specifying their lower left corner, and also considering
      * that rectangles can specify the origin about which they will be rotated.
      *
-     * Fortunately, we were smart when drawing the satellite, and made sure that it was _centered_ at
-     * SATELLITE_POSITION_X, SATELLITE_POSITION_Y, and also rotated about that point. That makes our
-     * job super easy. We just move the camera to that position, and rotate the camera.
+     * Fortunately, we were smart when drawing the satellite, and made sure that it was _centered_
+     * at SATELLITE_POSITION_X, SATELLITE_POSITION_Y, and also rotated about that point. That makes
+     * our job super easy. We just move the camera to that position, and rotate the camera.
      */
 
     private void trackSatellite(OrthographicCamera camera, float aspectRatio) {

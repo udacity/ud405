@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
  * TODO: Start here
  *
  * In this project we have three overlapping rectangles. They'd look nice and symmetrical if the
- * left end of the red one was on top of the blue one, but, constrained by the painter's algorithem
+ * left end of the red one was on top of the blue one, but, constrained by the painter's algorithm
  * as we are, that would seem to be impossible. Can you figure out a way to make it happen?
  */
 

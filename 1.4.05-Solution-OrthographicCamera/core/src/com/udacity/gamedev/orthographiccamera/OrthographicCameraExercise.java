@@ -29,7 +29,7 @@ public class OrthographicCameraExercise extends ApplicationAdapter {
     ShapeRenderer renderer;
     long timeCreated;
 
-    //TODO: Declare OrthographicCamera
+    //TODO: Declare an OrthographicCamera
     OrthographicCamera camera;
 
     @Override
@@ -40,7 +40,7 @@ public class OrthographicCameraExercise extends ApplicationAdapter {
         // TODO: Initialize the camera
         camera = new OrthographicCamera();
 
-        // TODO: Set the camera's position to the center of the circle's movement
+        // TODO: Set the camera's position to the center of the circle's movement (X_CENTER, Y_CENTER)
         camera.position.set(X_CENTER, Y_CENTER, 0);
     }
 

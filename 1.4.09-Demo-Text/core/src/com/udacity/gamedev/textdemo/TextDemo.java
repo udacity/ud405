@@ -14,7 +14,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * ShapeRenderer.
  *
  * One more concept we haven't yet covered is filtering. That's how we determine what to do when we
- * draw a bitmap at a larger size than it was intended.
+ * draw a bitmap at a larger size than it was intended. Our options are Linear, and Nearest. Nearest
+ * is what you want for pixel art, where you want things to maintain their sharp individual pixels.
+ * For everything else, you want the Linear filter, as that will smooth between adjacent pixels.
  */
 
 public class TextDemo extends ApplicationAdapter {
@@ -44,7 +46,7 @@ public class TextDemo extends ApplicationAdapter {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // We begin batches just like with a ShapeRenderer, though there's no mode
         batch.begin();

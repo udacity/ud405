@@ -24,8 +24,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class ViewportsExercise extends ApplicationAdapter {
 
-    private static final float WORLD_WIDTH = 1;
-    private static final float WORLD_HEIGHT = 1f;
+    private static final float WORLD_WIDTH = 100.0f;
+    private static final float WORLD_HEIGHT = 100.0f;
     private static final int RECURSIONS = 3;
 
     ShapeRenderer renderer;

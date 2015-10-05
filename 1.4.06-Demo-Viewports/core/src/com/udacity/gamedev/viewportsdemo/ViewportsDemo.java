@@ -39,11 +39,23 @@ public class ViewportsDemo extends ApplicationAdapter {
     @Override
     public void create() {
         camera = new OrthographicCamera();
+
+        // Makes the size of the world match the size of the screen
         viewport = new ScreenViewport(camera);
+
+        // Make the world fill the screen, regardless of aspect ratio
 //        viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+
+        // Make the world fill the screen, maintaining aspect ratio, but bits of the world may be cut off
 //        viewport = new FillViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+
+        // Fit the world inside the screen, adding black bars to pad out the extra space, maintaining aspect ratio
 //        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+
+        // Make the short axis of the world larger to fill the screen, maintaining aspect ratio
 //        viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+
+
         viewport.setScreenBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         renderer = new ShapeRenderer();
     }
