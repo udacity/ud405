@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
@@ -22,12 +21,13 @@ public class BouncingBall extends InputAdapter {
     private static final float RADIUS_GROWTH_RATE = 1.5f;
     private static final float MIN_RADIUS_MULTIPLIER = 0.1f;
     private static final float ACCELERATION = 500.0f;
-    private static final float MAX_SPEED = 400.0f;
-
-    private static final float KICK_INTERVAL = 3.0f;
+    private static final float MAX_SPEED = 4000.0f;
     private static final float KICK_VELOCITY = 500.0f;
+    private static final float FLICK_MULTIPLIER = 5.0f;
 
-    long lastKick;
+
+    Vector2 flickStart;
+    boolean flicking = false;
 
     float baseRadius;
     float radiusMultiplier;
@@ -39,16 +39,15 @@ public class BouncingBall extends InputAdapter {
 
 
     public BouncingBall(Viewport viewport) {
-        init(viewport);
+        this.viewport = viewport;
+        init();
     }
 
-    public void init(Viewport viewport) {
-        this.viewport = viewport;
+    public void init() {
         position = new Vector2(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2);
         velocity = new Vector2();
         baseRadius = RADIUS_FACTOR * Math.min(viewport.getWorldWidth(), viewport.getWorldHeight());
         radiusMultiplier = 1;
-        randomKick();
     }
 
     private void randomKick() {
@@ -59,49 +58,36 @@ public class BouncingBall extends InputAdapter {
     }
 
 
-
-    public void update(float delta, Viewport viewport) {
+    public void update(float delta) {
 
         // Growing and shrinking
-        if (Gdx.input.isKeyPressed(Keys.Z)){
+        if (Gdx.input.isKeyPressed(Keys.Z)) {
             radiusMultiplier += delta * RADIUS_GROWTH_RATE;
         }
-        if (Gdx.input.isKeyPressed(Keys.X)){
+        if (Gdx.input.isKeyPressed(Keys.X)) {
             radiusMultiplier -= delta * RADIUS_GROWTH_RATE;
             radiusMultiplier = Math.max(radiusMultiplier, MIN_RADIUS_MULTIPLIER);
         }
 
         // Movement
-        if (Gdx.input.isKeyPressed(Keys.LEFT)){
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             velocity.x -= delta * ACCELERATION;
 
         }
-        if (Gdx.input.isKeyPressed(Keys.RIGHT)){
+        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             velocity.x += delta * ACCELERATION;
 
         }
-        if (Gdx.input.isKeyPressed(Keys.UP)){
+        if (Gdx.input.isKeyPressed(Keys.UP)) {
             velocity.y += delta * ACCELERATION;
 
         }
-        if (Gdx.input.isKeyPressed(Keys.DOWN)){
+        if (Gdx.input.isKeyPressed(Keys.DOWN)) {
             velocity.y -= delta * ACCELERATION;
 
         }
 
         velocity.clamp(0, MAX_SPEED);
-
-
-
-
-
-
-        float secondsSinceLastKick = MathUtils.nanoToSec * (TimeUtils.nanoTime() - lastKick);
-
-        if (secondsSinceLastKick > KICK_INTERVAL) {
-            lastKick = TimeUtils.nanoTime();
-//            randomKick();
-        }
 
         velocity.x -= delta * DRAG * velocity.x;
         velocity.y -= delta * DRAG * velocity.y;
@@ -142,48 +128,59 @@ public class BouncingBall extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
 
-        if (keycode == Keys.SPACE){
+        if (keycode == Keys.SPACE) {
             randomKick();
         }
 
-
-        return true;
-    }
-
-    Vector2 flickStart;
-    boolean flicking = false;
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-        Vector2 worldClick = viewport.unproject(new Vector2(screenX, screenY));
-
-
-        if (worldClick.dst(position) < baseRadius * radiusMultiplier){
-            Gdx.app.log("Ball", "Click in the ball, starting flick.");
+        if (keycode == Keys.R) {
+            init();
         }
 
-        flicking = true;
-        flickStart = worldClick;
-
-
-
-
         return true;
     }
+
+    /**
+     * TODO: Check out what happens when a touch starts
+     *
+     * When a touch starts, we first need to translate the point that the user touched from screen
+     * coordinates to world coordinates. Since the viewport handles the projection from world
+     * coordinates to screen coordinates, it also has an unproject() method that does the opposite.
+     *
+     * Next we use the Vector2.dst() method to see if the distance between the touch and the
+     * position of the ball is smaller than the ball's radius. If the touch is inside the radius,
+     * then we start a flick, and save the world coordinates of the touch.
+     */
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Vector2 worldClick = viewport.unproject(new Vector2(screenX, screenY));
+        if (worldClick.dst(position) < baseRadius * radiusMultiplier) {
+            flicking = true;
+            flickStart = worldClick;
+        }
+        return true;
+    }
+
+    /**
+     * TODO: Check out what happens when a touch ends
+     *
+     * If we were in the process of flicking the ball, we calculate the vector between the start of
+     * the flick and the end of the flick. Remember that the incoming position of the touch is in
+     * screen coordinates, so we need to use the viewport to unproject that position into world
+     * coordinates.
+     *
+     * Then we add that flick vector to the velocity of the ball, times some multiplier. Give it a
+     * try!
+     */
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if (flicking){
+        if (flicking) {
             flicking = false;
             Vector2 flickEnd = viewport.unproject(new Vector2(screenX, screenY));
+            Vector2 flickVector = new Vector2(flickEnd.x - flickStart.x, flickEnd.y - flickStart.y);
+            velocity.mulAdd(flickVector, FLICK_MULTIPLIER);
 
-            velocity.x += 3 *  (flickEnd.x - flickStart.x);
-            velocity.y +=  3 * (flickEnd.y - flickStart.y);
-            Gdx.app.log("Ball", "End flick");
         }
-
-
 
         return true;
     }

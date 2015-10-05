@@ -28,7 +28,7 @@ public class BallScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        ball.init(viewport);
+        ball.init();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class BallScreen extends ScreenAdapter {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setProjectionMatrix(viewport.getCamera().combined);
-        ball.update(delta, viewport);
+        ball.update(delta);
 
         renderer.begin(ShapeType.Filled);
         ball.render(renderer);
