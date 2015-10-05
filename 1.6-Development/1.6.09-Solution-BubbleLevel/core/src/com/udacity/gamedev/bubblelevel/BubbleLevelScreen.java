@@ -1,4 +1,4 @@
-package com.udacity.accelerometeraxes;
+package com.udacity.gamedev.bubblelevel;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -13,9 +13,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
-public class AccelerometerAxesScreen extends ScreenAdapter {
+public class BubbleLevelScreen extends ScreenAdapter {
 
-    public static final String TAG = AccelerometerAxesScreen.class.getName();
+    public static final String TAG = BubbleLevelScreen.class.getName();
 
     private static final float WORLD_SIZE = 100.0f;
     private static final float TEXT_SCALE = 5.0f;
@@ -88,55 +88,30 @@ public class AccelerometerAxesScreen extends ScreenAdapter {
 
         axisViewport.apply();
         renderer.setProjectionMatrix(axisViewport.getCamera().combined);
-        renderer.begin(ShapeType.Filled);
+        renderer.begin(ShapeType.Line);
         renderer.setColor(AXIS_COLOR);
 
-//        renderer.circle(WORLD_SIZE / 2,
-//                WORLD_SIZE / 2,
-//                WORLD_SIZE / 4, 64);
-//
-//        renderer.setColor(Color.GREEN);
-//
-//
-//        renderer.circle(WORLD_SIZE / 2,
-//                WORLD_SIZE / 2,
-//                WORLD_SIZE / 40,
-//                64);
-//
-//        renderer.set(ShapeType.Filled);
-//        renderer.circle(
-//                WORLD_SIZE * (.5f - .25f * yAxis / 9.8f),
-//                WORLD_SIZE * (.5f + .25f * xAxis / 9.8f),
-//                WORLD_SIZE / 50,
-//                64
-//        );
+        renderer.circle(WORLD_SIZE / 2,
+                WORLD_SIZE / 2,
+                WORLD_SIZE / 4, 64);
 
-        renderer.rectLine(
+        renderer.setColor(Color.GREEN);
+
+
+        renderer.circle(WORLD_SIZE / 2,
                 WORLD_SIZE / 2,
-                WORLD_SIZE / 2,
+                WORLD_SIZE / 40,
+                64);
+
+        renderer.set(ShapeType.Filled);
+        renderer.circle(
                 WORLD_SIZE * (.5f - .25f * yAxis / 9.8f),
-                WORLD_SIZE / 2,
-                AXIS_WIDTH);
+                WORLD_SIZE * (.5f + .25f * xAxis / 9.8f),
+                WORLD_SIZE / 50,
+                64
+        );
 
-        renderer.rectLine(
-                WORLD_SIZE / 2,
-                WORLD_SIZE / 2,
-                WORLD_SIZE / 2 ,
-                WORLD_SIZE * (.5f + .25f * xAxis/9.8f),
-                AXIS_WIDTH);
-
-
-//
-////        float xAxis = Gdx.input.getAccelerometerX();
-////        float yAxis = Gdx.input.getAccelerometerY();
-////        float zAxis = Gdx.input.getAccelerometerZ();
-////
-////        Gdx.app.log(TAG, "Accelerometer reads x = " + xAxis + ", y = " + yAxis + ", z = " + zAxis);
-//
-//
-//
         renderer.end();
-
 
     }
 }
