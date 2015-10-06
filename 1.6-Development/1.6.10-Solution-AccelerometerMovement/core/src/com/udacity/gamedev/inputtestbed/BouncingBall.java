@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
@@ -27,7 +26,7 @@ public class BouncingBall extends InputAdapter {
     private static final float ACCELEROMETER_SENSITIVITY = 0.5f;
     private static final float ACCELERATION_OF_GRAVITY = 9.8f;
 
-    private static final float KICK_INTERVAL = 3.0f;
+
     private static final float KICK_VELOCITY = 500.0f;
 
     long lastKick;
@@ -42,16 +41,15 @@ public class BouncingBall extends InputAdapter {
 
 
     public BouncingBall(Viewport viewport) {
-        init(viewport);
+        this.viewport = viewport;
+        init();
     }
 
-    public void init(Viewport viewport) {
-        this.viewport = viewport;
+    public void init() {
         position = new Vector2(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2);
         velocity = new Vector2();
         baseRadius = RADIUS_FACTOR * Math.min(viewport.getWorldWidth(), viewport.getWorldHeight());
         radiusMultiplier = 1;
-        randomKick();
     }
 
     private void randomKick() {
@@ -63,7 +61,7 @@ public class BouncingBall extends InputAdapter {
 
 
 
-    public void update(float delta, Viewport viewport) {
+    public void update(float delta) {
 
         // Growing and shrinking
         if (Gdx.input.isKeyPressed(Keys.Z)){
@@ -98,29 +96,18 @@ public class BouncingBall extends InputAdapter {
 
         // Accelerometer Movement
 
+
+        // TODO: Get the accelerometer reading for the x axis (remember that the reading will be relative to the portrait device orientation)
         float xAxis = -Gdx.input.getAccelerometerY();
+
+        // TODO: Get the accelerometer reading for the y axis
         float yAxis = Gdx.input.getAccelerometerX();
 
+        // TODO
         velocity.x -= ACCELERATION * delta * xAxis / (ACCELEROMETER_SENSITIVITY * ACCELERATION_OF_GRAVITY);
         velocity.y -= ACCELERATION * delta * yAxis / (ACCELEROMETER_SENSITIVITY * ACCELERATION_OF_GRAVITY);
 
-
-
-
-
         velocity.clamp(0, MAX_SPEED);
-
-
-
-
-
-
-        float secondsSinceLastKick = MathUtils.nanoToSec * (TimeUtils.nanoTime() - lastKick);
-
-        if (secondsSinceLastKick > KICK_INTERVAL) {
-            lastKick = TimeUtils.nanoTime();
-//            randomKick();
-        }
 
         velocity.x -= delta * DRAG * velocity.x;
         velocity.y -= delta * DRAG * velocity.y;

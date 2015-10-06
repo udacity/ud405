@@ -96,27 +96,17 @@ public class BubbleLevelScreen extends ScreenAdapter {
         renderer.setColor(Color.RED);
 
         // TODO: Draw a circle to indicate 9.8m/s^2
-        renderer.circle(WORLD_SIZE / 2,
-                WORLD_SIZE / 2,
-                WORLD_SIZE / 4, 64);
+
 
         renderer.setColor(Color.GREEN);
 
         // TODO: Draw a circle to hold the bubble when the phone is flat
-        renderer.circle(WORLD_SIZE / 2,
-                WORLD_SIZE / 2,
-                WORLD_SIZE / 40,
-                64);
+
 
         renderer.set(ShapeType.Filled);
 
         // TODO: Draw the bubble
-        renderer.circle(
-                WORLD_SIZE * (.5f - .25f * yAxis / 9.8f),
-                WORLD_SIZE * (.5f + .25f * xAxis / 9.8f),
-                WORLD_SIZE / 50,
-                64
-        );
+
 
         renderer.end();
 

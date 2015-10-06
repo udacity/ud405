@@ -66,11 +66,12 @@ public class AccelerometerAxesScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // TODO: First we get the raw accelerometer readings
         float xAxis = Gdx.input.getAccelerometerX();
         float yAxis = Gdx.input.getAccelerometerY();
         float zAxis = Gdx.input.getAccelerometerZ();
 
-
+        // TODO: We can calculate the total acceleration using the Pythagorean theorem
         float totalAcceleration = (float) Math.sqrt(xAxis * xAxis + yAxis * yAxis + zAxis * zAxis);
 
         maxAcceleration = Math.max(maxAcceleration, totalAcceleration);
