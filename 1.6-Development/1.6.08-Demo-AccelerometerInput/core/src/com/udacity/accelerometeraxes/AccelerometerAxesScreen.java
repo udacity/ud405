@@ -92,26 +92,9 @@ public class AccelerometerAxesScreen extends ScreenAdapter {
         renderer.begin(ShapeType.Filled);
         renderer.setColor(AXIS_COLOR);
 
-//        renderer.circle(WORLD_SIZE / 2,
-//                WORLD_SIZE / 2,
-//                WORLD_SIZE / 4, 64);
-//
-//        renderer.setColor(Color.GREEN);
-//
-//
-//        renderer.circle(WORLD_SIZE / 2,
-//                WORLD_SIZE / 2,
-//                WORLD_SIZE / 40,
-//                64);
-//
-//        renderer.set(ShapeType.Filled);
-//        renderer.circle(
-//                WORLD_SIZE * (.5f - .25f * yAxis / 9.8f),
-//                WORLD_SIZE * (.5f + .25f * xAxis / 9.8f),
-//                WORLD_SIZE / 50,
-//                64
-//        );
 
+        // TODO: Now we draw the accelerometer readings
+        // Horizontal bar, note we have to use the negative yAxis reading, since we're in landscape mode
         renderer.rectLine(
                 WORLD_SIZE / 2,
                 WORLD_SIZE / 2,
@@ -119,6 +102,7 @@ public class AccelerometerAxesScreen extends ScreenAdapter {
                 WORLD_SIZE / 2,
                 AXIS_WIDTH);
 
+        // Vertical bar, note we have to use the positive xAxis reading, since we're in landscape mode
         renderer.rectLine(
                 WORLD_SIZE / 2,
                 WORLD_SIZE / 2,
@@ -126,16 +110,6 @@ public class AccelerometerAxesScreen extends ScreenAdapter {
                 WORLD_SIZE * (.5f + .25f * xAxis/9.8f),
                 AXIS_WIDTH);
 
-
-//
-////        float xAxis = Gdx.input.getAccelerometerX();
-////        float yAxis = Gdx.input.getAccelerometerY();
-////        float zAxis = Gdx.input.getAccelerometerZ();
-////
-////        Gdx.app.log(TAG, "Accelerometer reads x = " + xAxis + ", y = " + yAxis + ", z = " + zAxis);
-//
-//
-//
         renderer.end();
 
 
