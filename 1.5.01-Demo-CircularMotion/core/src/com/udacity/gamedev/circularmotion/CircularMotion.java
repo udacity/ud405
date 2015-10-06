@@ -30,7 +30,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class CircularMotion extends ApplicationAdapter {
 
-
     public static final String TAG = CircularMotion.class.getName();
     private static final float WORLD_SIZE = 480.0f;
     private static final float CIRCLE_RADIUS = WORLD_SIZE / 20;
@@ -85,7 +84,7 @@ public class CircularMotion extends ApplicationAdapter {
         renderer.circle(x, y, CIRCLE_RADIUS);
 
         // Uncomment the next line to see the sort of beautiful things you can create with simple movement
-        // drawFancyCircles(renderer, elapsedPeriods, 20);
+//         drawFancyCircles(renderer, elapsedPeriods, 20);
         renderer.end();
     }
 

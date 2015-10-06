@@ -6,7 +6,7 @@ import com.badlogic.gdx.Game;
 /**
  * First complete all the TODOs in MyScreen, then:
  *
- * TODO: Delete the whole body of MyGame
+ * TODO: Once you're done in MyScreen, Delete the whole body of MyGame
  *
  * TODO: Declare that MyGame extends Game (com.badlogic.gdx.Game)
  *

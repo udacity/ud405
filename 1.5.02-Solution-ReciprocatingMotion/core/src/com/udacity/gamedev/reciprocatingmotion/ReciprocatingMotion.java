@@ -81,7 +81,6 @@ public class ReciprocatingMotion extends ApplicationAdapter {
         // TODO: Use MathUtils.sin() to set the x position of the circle
         float x = worldCenterX + MOVEMENT_DISTANCE * MathUtils.sin(MathUtils.PI2 * cyclePosition);
 
-//        float x = worldCenterX;
         float y = worldCenterY;
         renderer.circle(x, y, CIRCLE_RADIUS);
         renderer.end();

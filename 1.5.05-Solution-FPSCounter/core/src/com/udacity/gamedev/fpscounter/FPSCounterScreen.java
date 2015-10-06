@@ -61,7 +61,7 @@ public class FPSCounterScreen extends ScreenAdapter{
         // TODO: Begin a new batch
         batch.begin();
 
-        // TODO: Use the delta to figure out the number of frames per second
+        // TODO: Use delta to figure out the number of frames per second
         float fps = 1 / delta;
 
         // TODO: Use the BitmapFont to draw the FPS

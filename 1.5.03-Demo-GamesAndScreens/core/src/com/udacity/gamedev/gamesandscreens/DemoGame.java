@@ -11,18 +11,6 @@ import com.badlogic.gdx.Gdx;
  * If we check out Game, we see it's got a screen member variable, and it seems that, for every
  * callback that ApplicationListener implements, it checks to see if it's got a Screen, and if so,
  * it delegates that callback to the Screen.
- *
- * So what's a screen? Well if we check out its source, we see:
- *
- * > Represents one of many application screens, such as a main menu, a settings menu, the game
- * screen and so on.
- *
- * And if we look at the required methods, it seems that the callbacks for a Screen are almost
- * identical to ApplicationListener.
- *
- * So if we want to switch between different logical screens in our game, we just need to call
- * setScreen() on our Game object, and all the ApplicationListener callbacks will be redirected to
- * the screen that we want to be active!
  */
 
 
@@ -37,7 +25,11 @@ public class DemoGame extends Game {
     /**
      * So let's see this in action. Here we've declared two screens. One of which displays the
      * number of frames displayed per second, and the other displays the number of seconds between
-     * the current frame and the last one. Let's check out the DeltaScreen.
+     * the current frame and the last one.
+     *
+     * To set the active screen, we just need to call setScreen() on our Game.
+     *
+     * Let's check out the DeltaScreen.
      */
     @Override
     public void create() {
