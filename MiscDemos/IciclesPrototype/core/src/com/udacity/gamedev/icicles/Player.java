@@ -3,56 +3,105 @@ package com.udacity.gamedev.icicles;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class Player extends InputAdapter {
 
-    private static final Color PLAYER_COLOR = Color.WHITE;
-    private static final int HEAD_SEGMENTS = 20;
-    private static final float ARROW_VELOCITY = 6;
+    public static final String TAG = Player.class.getName();
 
-    public static final float HEAD_RADIUS = 0.5f;
-
-    public static final float HEAD_HEIGHT = 1.0f;
-    float headXPosition;
+    Vector2 position;
     Vector2 velocity;
 
-    public Player(){
+    Viewport viewport;
+
+    int deaths;
+
+    public Player(Viewport viewport) {
+        this.viewport = viewport;
+        deaths = 0;
         init();
     }
 
-    public void init(){
-        headXPosition = Constants.WORLD_WIDTH / 2;
+    public void init() {
+        position = new Vector2(viewport.getWorldWidth() / 2, 4 * Constants.PLAYER_HEAD_RADIUS);
+        velocity = new Vector2();
     }
 
-    public void update(float delta){
-        if (Gdx.input.isKeyPressed(Keys.LEFT)){
-            headXPosition -= ARROW_VELOCITY * delta;
-        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)){
-            headXPosition += ARROW_VELOCITY * delta;
+    public void update(float delta) {
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+            position.x -= delta * Constants.PLAYER_MOVEMENT_SPEED;
+        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            position.x += delta * Constants.PLAYER_MOVEMENT_SPEED;
         }
 
+        float accelerometerInput = -Gdx.input.getAccelerometerY() * Constants.ACCELEROMETER_SENSITIVITY / Constants.GRAVITATIONAL_ACCELERATION;
 
+        position.x += accelerometerInput * Constants.PLAYER_MOVEMENT_SPEED;
 
-        if (headXPosition - HEAD_RADIUS < 0){
-            headXPosition = HEAD_RADIUS;
-        } else if (headXPosition + HEAD_RADIUS > Constants.WORLD_WIDTH) {
-            headXPosition = Constants.WORLD_WIDTH - HEAD_RADIUS;
+//        velocity.clamp(0, Constants.PLAYER_MOVEMENT_SPEED);
 
+//        position.mulAdd(velocity, delta);
+        ensureInBounds();
+
+    }
+
+    private void ensureInBounds() {
+        if (position.x - Constants.PLAYER_HEAD_RADIUS < 0) {
+            position.x = Constants.PLAYER_HEAD_RADIUS;
+        }
+        if (position.x + Constants.PLAYER_HEAD_RADIUS > viewport.getWorldWidth()) {
+            position.x = viewport.getWorldWidth() - Constants.PLAYER_HEAD_RADIUS;
+        }
+    }
+
+    public boolean hitByIcicle(Icicles icicles){
+        boolean isHit = false;
+        for (Icicle icicle : icicles.icicleList){
+            if (icicle.position.dst(position) < Constants.PLAYER_HEAD_RADIUS){
+                Gdx.app.log(TAG, "Hit: " + icicle.position + " " + position);
+                isHit = true;
+            }
+        }
+        if (isHit){
+            deaths += 1;
         }
 
+        return isHit;
     }
 
-    public void render(ShapeRenderer renderer){
-        renderer.set(ShapeType.Filled);
-        renderer.setColor(PLAYER_COLOR);
-        renderer.circle(headXPosition, HEAD_HEIGHT, HEAD_RADIUS, HEAD_SEGMENTS);
+
+
+    public void render(ShapeRenderer renderer) {
+        renderer.setColor(Constants.PLAYER_COLOR);
+        renderer.circle(position.x, position.y, Constants.PLAYER_HEAD_RADIUS, Constants.PLAYER_HEAD_SEGMENTS);
+        renderer.set(ShapeType.Line);
+
+        Vector2 torsoTop = new Vector2(position.x, position.y - Constants.PLAYER_HEAD_RADIUS);
+        Vector2 torsoBottom = new Vector2(torsoTop.x, torsoTop.y - 2 * Constants.PLAYER_HEAD_RADIUS);
+
+        renderer.line(torsoTop, torsoBottom);
+
+        renderer.line(
+                torsoTop.x, torsoTop.y,
+                torsoTop.x + Constants.PLAYER_HEAD_RADIUS, torsoTop.y - Constants.PLAYER_HEAD_RADIUS );
+        renderer.line(
+                torsoTop.x, torsoTop.y,
+                torsoTop.x - Constants.PLAYER_HEAD_RADIUS, torsoTop.y - Constants.PLAYER_HEAD_RADIUS );
+
+        renderer.line(
+                torsoBottom.x, torsoBottom.y,
+                torsoBottom.x + Constants.PLAYER_HEAD_RADIUS, torsoBottom.y - Constants.PLAYER_HEAD_RADIUS );
+        renderer.line(
+                torsoBottom.x, torsoBottom.y,
+                torsoBottom.x - Constants.PLAYER_HEAD_RADIUS, torsoBottom.y - Constants.PLAYER_HEAD_RADIUS );
+
+
+
 
     }
-
 
 }

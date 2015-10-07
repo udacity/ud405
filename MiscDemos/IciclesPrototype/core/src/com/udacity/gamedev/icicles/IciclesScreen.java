@@ -1,19 +1,16 @@
 package com.udacity.gamedev.icicles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
@@ -32,20 +29,27 @@ public class IciclesScreen extends ScreenAdapter {
     Player player;
     Icicles icicles;
 
+    int topScore;
 
     @Override
     public void show() {
-        iciclesViewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+        iciclesViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
+
         hudViewport = new ScreenViewport();
         batch = new SpriteBatch();
+
         font = new BitmapFont();
         font.getData().setScale(Constants.HUD_FONT_SCALE);
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        player = new Player();
+
+        player = new Player(iciclesViewport);
         Gdx.input.setInputProcessor(player);
-        icicles = new Icicles();
+        icicles = new Icicles(iciclesViewport);
+
+        topScore = 0;
     }
 
     @Override
@@ -63,18 +67,40 @@ public class IciclesScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        player.update(delta);
         icicles.update(delta);
+        player.update(delta);
+        if (player.hitByIcicle(icicles)) {
+            icicles.init();
+        }
+
 
         iciclesViewport.apply(true);
         Gdx.gl.glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        renderer.setProjectionMatrix(iciclesViewport.combined);
+        renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
         renderer.begin(ShapeType.Filled);
         icicles.render(renderer);
         player.render(renderer);
         renderer.end();
+
+        hudViewport.apply();
+        batch.setProjectionMatrix(hudViewport.getCamera().combined);
+        batch.begin();
+
+        topScore = Math.max(topScore, icicles.iciclesDodged);
+
+        font.draw(batch, "Deaths: " + player.deaths,
+                Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
+        font.draw(batch, "Score: " + icicles.iciclesDodged + "\nTop Score: " + topScore,
+                hudViewport.getWorldWidth() - Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
+                0, Align.right, false);
+
+
+
+        batch.end();
+
+
     }
 
 }
