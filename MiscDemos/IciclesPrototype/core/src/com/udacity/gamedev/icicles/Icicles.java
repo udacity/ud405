@@ -43,7 +43,7 @@ public class Icicles {
 
         icicleList.begin();
         for (int i = 0; i < icicleList.size; i++){
-            if (icicleList.get(i).position.y < - Constants.ICICLES_HEIGHT){
+            if (icicleList.get(i).position.y < -Constants.ICICLES_HEIGHT){
                 iciclesDodged += 1;
                 icicleList.removeIndex(i);
             }

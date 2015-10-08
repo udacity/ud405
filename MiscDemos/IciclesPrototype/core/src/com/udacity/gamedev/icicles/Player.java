@@ -23,15 +23,15 @@ public class Player extends InputAdapter {
     public Player(Viewport viewport) {
         this.viewport = viewport;
         deaths = 0;
-        init();
+        init(viewport);
     }
 
-    public void init() {
+    public void init(Viewport viewport2) {
         position = new Vector2(viewport.getWorldWidth() / 2, 4 * Constants.PLAYER_HEAD_RADIUS);
         velocity = new Vector2();
     }
 
-    public void update(float delta) {
+    public void update(float delta, Viewport viewport2) {
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             position.x -= delta * Constants.PLAYER_MOVEMENT_SPEED;
         } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
@@ -40,16 +40,16 @@ public class Player extends InputAdapter {
 
         float accelerometerInput = -Gdx.input.getAccelerometerY() * Constants.ACCELEROMETER_SENSITIVITY / Constants.GRAVITATIONAL_ACCELERATION;
 
-        position.x += accelerometerInput * Constants.PLAYER_MOVEMENT_SPEED;
+        position.x += -delta * accelerometerInput * Constants.PLAYER_MOVEMENT_SPEED;
 
 //        velocity.clamp(0, Constants.PLAYER_MOVEMENT_SPEED);
 
 //        position.mulAdd(velocity, delta);
-        ensureInBounds();
+        ensureInBounds(viewport);
 
     }
 
-    private void ensureInBounds() {
+    private void ensureInBounds(Viewport viewport2) {
         if (position.x - Constants.PLAYER_HEAD_RADIUS < 0) {
             position.x = Constants.PLAYER_HEAD_RADIUS;
         }

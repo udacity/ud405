@@ -18,7 +18,6 @@ public class IciclesScreen extends ScreenAdapter {
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 
-
     ExtendViewport iciclesViewport;
     ShapeRenderer renderer;
 
@@ -56,6 +55,10 @@ public class IciclesScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         iciclesViewport.update(width, height, true);
         hudViewport.update(width, height, true);
+        font.getData().setScale(Constants.HUD_FONT_SCALE * height / 450);
+
+        player.init(iciclesViewport);
+        icicles.init();
     }
 
     @Override
@@ -68,7 +71,7 @@ public class IciclesScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         icicles.update(delta);
-        player.update(delta);
+        player.update(delta, iciclesViewport);
         if (player.hitByIcicle(icicles)) {
             icicles.init();
         }
