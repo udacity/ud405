@@ -1,6 +1,5 @@
 package com.udacity.gamedev.icicles;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -13,13 +12,14 @@ public class Icicles {
 
     public static final String TAG = Icicles.class.getName();
 
-    Difficulty difficulty = Difficulty.EASY;
+    Difficulty difficulty;
 
     int iciclesDodged;
     DelayedRemovalArray<Icicle> icicleList;
     Viewport viewport;
 
-    public Icicles(Viewport viewport) {
+    public Icicles(Viewport viewport, Difficulty difficulty) {
+        this.difficulty = difficulty;
         this.viewport = viewport;
         init();
     }
@@ -30,7 +30,6 @@ public class Icicles {
     }
 
     public void update(float delta) {
-
         if (MathUtils.random() < delta * difficulty.spawnRate) {
             Vector2 newIciclePosition = new Vector2(
                     MathUtils.random() * viewport.getWorldWidth(),
@@ -52,12 +51,10 @@ public class Icicles {
             }
         }
         icicleList.end();
-
-
     }
 
     public void render(ShapeRenderer renderer) {
-        renderer.setColor(Color.WHITE);
+        renderer.setColor(Constants.ICICLE_COLOR);
         for (Icicle icicle : icicleList) {
             icicle.render(renderer);
         }

@@ -1,8 +1,8 @@
 package com.udacity.gamedev.icicles;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -16,11 +16,13 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.udacity.gamedev.icicles.Constants.Difficulty;
 
 
-public class IciclesScreen extends ScreenAdapter {
+public class IciclesScreen extends InputAdapter implements Screen {
+
+    public static final String TAG = IciclesScreen.class.getName();
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 
-    Game game;
+    IciclesGame game;
     Difficulty difficulty;
 
     ExtendViewport iciclesViewport;
@@ -35,7 +37,7 @@ public class IciclesScreen extends ScreenAdapter {
 
     int topScore;
 
-    public IciclesScreen(Game game, Difficulty difficulty){
+    public IciclesScreen(IciclesGame game, Difficulty difficulty) {
         this.game = game;
         this.difficulty = difficulty;
     }
@@ -51,12 +53,12 @@ public class IciclesScreen extends ScreenAdapter {
         batch = new SpriteBatch();
 
         font = new BitmapFont();
-        font.getData().setScale(Constants.HUD_FONT_SCALE);
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         player = new Player(iciclesViewport);
-        Gdx.input.setInputProcessor(player);
-        icicles = new Icicles(iciclesViewport);
+        icicles = new Icicles(iciclesViewport, difficulty);
+
+        Gdx.input.setInputProcessor(this);
 
         topScore = 0;
     }
@@ -65,9 +67,9 @@ public class IciclesScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         iciclesViewport.update(width, height, true);
         hudViewport.update(width, height, true);
-        font.getData().setScale(Constants.HUD_FONT_SCALE * height / 450);
+        font.getData().setScale(Math.min(width, height) / Constants.HUD_FONT_REFERENCE_SCREEN_SIZE);
 
-        player.init(iciclesViewport);
+        player.init();
         icicles.init();
     }
 
@@ -81,7 +83,7 @@ public class IciclesScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         icicles.update(delta);
-        player.update(delta, iciclesViewport);
+        player.update(delta);
         if (player.hitByIcicle(icicles)) {
             icicles.init();
         }
@@ -103,21 +105,34 @@ public class IciclesScreen extends ScreenAdapter {
 
         topScore = Math.max(topScore, icicles.iciclesDodged);
 
-        font.draw(batch, "Deaths: " + player.deaths,
+        font.draw(batch, "Deaths: " + player.deaths + "\nDifficulty: " + difficulty.label,
                 Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
         font.draw(batch, "Score: " + icicles.iciclesDodged + "\nTop Score: " + topScore,
                 hudViewport.getWorldWidth() - Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
                 0, Align.right, false);
 
-
-
         batch.end();
 
+    }
+
+    @Override
+    public void pause() {
 
     }
 
-    public void setDifficulty(Difficulty difficulty){
-        icicles.difficulty = difficulty;
+    @Override
+    public void resume() {
+
     }
 
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        game.showDifficultyScreen();
+        return true;
+    }
 }
