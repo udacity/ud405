@@ -1,5 +1,6 @@
 package com.udacity.gamedev.icicles;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -12,11 +13,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.udacity.gamedev.icicles.Constants.Difficulty;
 
 
 public class IciclesScreen extends ScreenAdapter {
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
+
+    Game game;
+    Difficulty difficulty;
 
     ExtendViewport iciclesViewport;
     ShapeRenderer renderer;
@@ -29,6 +34,11 @@ public class IciclesScreen extends ScreenAdapter {
     Icicles icicles;
 
     int topScore;
+
+    public IciclesScreen(Game game, Difficulty difficulty){
+        this.game = game;
+        this.difficulty = difficulty;
+    }
 
     @Override
     public void show() {
@@ -104,6 +114,10 @@ public class IciclesScreen extends ScreenAdapter {
         batch.end();
 
 
+    }
+
+    public void setDifficulty(Difficulty difficulty){
+        icicles.difficulty = difficulty;
     }
 
 }

@@ -66,10 +66,10 @@ public class BubbleLevelScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        float xAxis = Gdx.input.getAccelerometerX();
-        float yAxis = Gdx.input.getAccelerometerY();
-        float zAxis = Gdx.input.getAccelerometerZ();
-
+        // TODO: Get accelerometer readings
+        float xAxis = 0;
+        float yAxis = 0;
+        float zAxis = 0;
 
         float totalAcceleration = (float) Math.sqrt(xAxis * xAxis + yAxis * yAxis + zAxis * zAxis);
 
@@ -88,7 +88,6 @@ public class BubbleLevelScreen extends ScreenAdapter {
 
         axisViewport.apply();
         renderer.setProjectionMatrix(axisViewport.getCamera().combined);
-
 
 
         renderer.begin(ShapeType.Line);

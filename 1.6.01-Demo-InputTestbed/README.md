@@ -4,10 +4,7 @@ Now that we know how to make stuff move, let's make it interactive! There are a 
 
 The simplest form of input is just key presses. They offer the user the tightest control, and even if you're building a mobile only game where keypresses aren't relevant, they're still incredibly  convenient for debugging.
 
-There are a couple different things you might want to know about a keypress.
-
-
-Say you're building a platformer and you want to control the left/right movement of the character using the arrow keys. Each frame you're interested in knowing whether those buttons are pressed.
+There are a couple different things you might want to know about a keypress. Say you're building a platformer and you want to control the left/right movement of the character using the arrow keys. Each frame you're interested in knowing whether those buttons are pressed.
 
 On the other hand, say you want the character to fire a grappling hook when the spacebar is pressed. In this case you don't actually want to check every frame to see if the spacebar is pressed, since it's only relevant the moment the key is pressed. Subsequent frames, you don't care that the spacebar is down. 
 
