@@ -59,5 +59,4 @@ public class Icicles {
             icicle.render(renderer);
         }
     }
-
 }

@@ -25,7 +25,7 @@ public class Player {
     }
 
     public void init() {
-        position = new Vector2(viewport.getWorldWidth() / 2, 4 * Constants.PLAYER_HEAD_RADIUS);
+        position = new Vector2(viewport.getWorldWidth() / 2, Constants.PLAYER_HEAD_HEIGHT);
     }
 
     public void update(float delta) {

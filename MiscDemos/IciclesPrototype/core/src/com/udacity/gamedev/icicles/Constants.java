@@ -9,6 +9,7 @@ public class Constants {
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 
     public static final float PLAYER_HEAD_RADIUS = 0.5f;
+    public static final float PLAYER_HEAD_HEIGHT = 4.0f * PLAYER_HEAD_RADIUS;
     public static final float PLAYER_LIMB_WIDTH = 0.1f;
     public static final int PLAYER_HEAD_SEGMENTS = 20;
     public static final Color PLAYER_COLOR = Color.BLACK;
@@ -45,7 +46,6 @@ public class Constants {
     public static final Vector2 MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2);
     public static final Vector2 HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE * 3 / 4, DIFFICULTY_WORLD_SIZE / 2);
 
-
     public enum Difficulty {
         EASY(EASY_SPAWNS_PER_SECOND, EASY_LABEL),
         MEDIUM(MEDIUM_SPAWNS_PER_SECOND, MEDIUM_LABEL),
@@ -54,7 +54,7 @@ public class Constants {
         float spawnRate;
         String label;
 
-        Difficulty(float spawnRate, String label){
+        Difficulty(float spawnRate, String label) {
             this.spawnRate = spawnRate;
             this.label = label;
         }

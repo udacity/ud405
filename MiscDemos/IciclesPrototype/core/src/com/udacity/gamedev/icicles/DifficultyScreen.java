@@ -16,11 +16,6 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.udacity.gamedev.icicles.Constants.Difficulty;
 
 
-
-
-/**
- * Created by silver on 10/8/15.
- */
 public class DifficultyScreen extends InputAdapter implements Screen {
 
     public static final String TAG = DifficultyScreen.class.getName();
@@ -33,14 +28,12 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
     BitmapFont font;
 
-    public DifficultyScreen(IciclesGame game){
+    public DifficultyScreen(IciclesGame game) {
         this.game = game;
-
     }
 
     @Override
     public void show() {
-
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();
 
@@ -73,6 +66,7 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         renderer.end();
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
+
         batch.begin();
 
         final GlyphLayout easyLayout = new GlyphLayout(font, Constants.EASY_LABEL);
@@ -83,6 +77,7 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         final GlyphLayout hardLayout = new GlyphLayout(font, Constants.HARD_LABEL);
         font.draw(batch, Constants.HARD_LABEL, Constants.HARD_CENTER.x, Constants.HARD_CENTER.y + hardLayout.height / 2, 0, Align.center, false);
+
         batch.end();
     }
 
@@ -113,19 +108,18 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
     }
 
-
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
-        if (worldTouch.dst(Constants.EASY_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS){
+        if (worldTouch.dst(Constants.EASY_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
             game.showIciclesScreen(Difficulty.EASY);
         }
 
-        if (worldTouch.dst(Constants.MEDIUM_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS){
+        if (worldTouch.dst(Constants.MEDIUM_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
             game.showIciclesScreen(Difficulty.MEDIUM);
         }
 
-        if (worldTouch.dst(Constants.HARD_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS){
+        if (worldTouch.dst(Constants.HARD_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
             game.showIciclesScreen(Difficulty.HARD);
         }
 
