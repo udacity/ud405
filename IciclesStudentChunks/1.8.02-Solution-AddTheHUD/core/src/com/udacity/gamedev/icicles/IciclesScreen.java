@@ -2,7 +2,6 @@ package com.udacity.gamedev.icicles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -12,16 +11,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.udacity.gamedev.icicles.Constants.Difficulty;
+
 
 
 public class IciclesScreen implements Screen {
 
     public static final String TAG = IciclesScreen.class.getName();
-
-    public static final Color BACKGROUND_COLOR = Color.BLUE;
-
-    Difficulty difficulty;
 
     ExtendViewport iciclesViewport;
     ShapeRenderer renderer;
@@ -34,10 +29,6 @@ public class IciclesScreen implements Screen {
     Icicles icicles;
 
     int topScore;
-
-    public IciclesScreen(Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
 
     @Override
     public void show() {
@@ -53,7 +44,7 @@ public class IciclesScreen implements Screen {
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         player = new Player(iciclesViewport);
-        icicles = new Icicles(iciclesViewport, difficulty);
+        icicles = new Icicles(iciclesViewport);
 
         topScore = 0;
     }
@@ -85,7 +76,7 @@ public class IciclesScreen implements Screen {
 
 
         iciclesViewport.apply(true);
-        Gdx.gl.glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1);
+        Gdx.gl.glClearColor(Constants.BACKGROUND_COLOR.r, Constants.BACKGROUND_COLOR.g, Constants.BACKGROUND_COLOR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
@@ -100,7 +91,7 @@ public class IciclesScreen implements Screen {
 
         topScore = Math.max(topScore, icicles.iciclesDodged);
 
-        font.draw(batch, "Deaths: " + player.deaths + "\nDifficulty: " + difficulty.label,
+        font.draw(batch, "Deaths: " + player.deaths,
                 Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
         font.draw(batch, "Score: " + icicles.iciclesDodged + "\nTop Score: " + topScore,
                 hudViewport.getWorldWidth() - Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN,

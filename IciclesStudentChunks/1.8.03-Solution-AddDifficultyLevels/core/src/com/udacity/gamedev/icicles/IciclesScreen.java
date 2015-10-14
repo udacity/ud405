@@ -83,7 +83,6 @@ public class IciclesScreen implements Screen {
             icicles.init();
         }
 
-
         iciclesViewport.apply(true);
         Gdx.gl.glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -107,7 +106,6 @@ public class IciclesScreen implements Screen {
                 0, Align.right, false);
 
         batch.end();
-
     }
 
     @Override

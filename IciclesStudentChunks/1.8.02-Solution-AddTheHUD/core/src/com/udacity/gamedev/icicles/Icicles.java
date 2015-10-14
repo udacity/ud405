@@ -5,21 +5,17 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.udacity.gamedev.icicles.Constants.Difficulty;
 
 
 public class Icicles {
 
     public static final String TAG = Icicles.class.getName();
 
-    Difficulty difficulty;
-
     int iciclesDodged;
     DelayedRemovalArray<Icicle> icicleList;
     Viewport viewport;
 
-    public Icicles(Viewport viewport, Difficulty difficulty) {
-        this.difficulty = difficulty;
+    public Icicles(Viewport viewport) {
         this.viewport = viewport;
         init();
     }
@@ -30,7 +26,7 @@ public class Icicles {
     }
 
     public void update(float delta) {
-        if (MathUtils.random() < delta * difficulty.spawnRate) {
+        if (MathUtils.random() < delta * Constants.ICICLE_SPAWNS_PER_SECOND) {
             Vector2 newIciclePosition = new Vector2(
                     MathUtils.random() * viewport.getWorldWidth(),
                     viewport.getWorldHeight()
