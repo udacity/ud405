@@ -29,13 +29,13 @@ public class Constants {
     public static final float DIFFICULTY_BUBBLE_RADIUS = DIFFICULTY_WORLD_SIZE / 9;
     public static final float DIFFICULTY_LABEL_SCALE = 1.5f;
 
-    public static final String EASY_LABEL = "Easy";
-    public static final String MEDIUM_LABEL = "Medium";
-    public static final String HARD_LABEL = "Hard";
+    public static final String EASY_LABEL = "Cold";
+    public static final String MEDIUM_LABEL = "Colder";
+    public static final String HARD_LABEL = "Coldest";
 
-    public static final Color EASY_COLOR = Color.GREEN;
-    public static final Color MEDIUM_COLOR = Color.YELLOW;
-    public static final Color HARD_COLOR = Color.RED;
+    public static final Color EASY_COLOR = new Color(0.2f, 0.2f, 1, 1);
+    public static final Color MEDIUM_COLOR = new Color(0.5f, 0.5f, 1, 1);
+    public static final Color HARD_COLOR = new Color(0.7f, 0.7f, 1, 1);
 
     public static final float EASY_SPAWNS_PER_SECOND = 5;
     public static final float MEDIUM_SPAWNS_PER_SECOND = 15;

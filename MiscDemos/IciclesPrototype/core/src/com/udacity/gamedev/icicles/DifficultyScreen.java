@@ -33,10 +33,6 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
     BitmapFont font;
 
-
-
-
-
     public DifficultyScreen(IciclesGame game){
         this.game = game;
 
