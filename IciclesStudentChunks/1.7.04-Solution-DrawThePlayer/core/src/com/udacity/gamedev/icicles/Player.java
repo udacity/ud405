@@ -10,10 +10,14 @@ public class Player {
 
     public static final String TAG = Player.class.getName();
 
+    // TODO: Add a position
     Vector2 position;
+
+    // TODO: Add a viewport
 
     Viewport viewport;
 
+    // TODO: Add constructor that
     public Player(Viewport viewport) {
         this.viewport = viewport;
         init();
