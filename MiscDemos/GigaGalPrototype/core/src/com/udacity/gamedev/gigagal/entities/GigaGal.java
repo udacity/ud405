@@ -9,10 +9,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.util.Constants;
 
-/**
- * Created by silver on 10/14/15.
- */
 public class GigaGal {
+
+    public final static String TAG = GigaGal.class.getName();
 
     Vector2 position;
     Vector2 velocity;
@@ -23,19 +22,18 @@ public class GigaGal {
 
     public GigaGal(){
         position = new Vector2();
+        velocity = new Vector2();
         texture = new Texture("GigaGalPlaceholder.png");
         jumpState = JumpState.GROUNDED;
     }
 
     public void update(float delta){
-
-
         if (Gdx.input.isKeyPressed(Keys.LEFT)){
-            position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
+            moveLeft(delta);
         }
 
         if (Gdx.input.isKeyPressed(Keys.RIGHT)){
-            position.x += delta * Constants.GIGA_GAL_MOVE_SPEED;
+            moveRight(delta);
         }
 
         if (Gdx.input.isKeyPressed(Keys.Z)){
@@ -47,20 +45,39 @@ public class GigaGal {
                     continueJump();
             }
         } else {
-            if (jumpState == JumpState.JUMPING){
-                jumpState = JumpState.FALLING;
-            }
+            endJump();
         }
 
+        if (jumpState == JumpState.FALLING){
+//            Gdx.app.log(TAG, "Falling");
+            velocity.y -= Constants.GRAVITY;
+        }
 
+        position.mulAdd(velocity, delta);
 
+        if (position.y < 0){
+            jumpState = JumpState.GROUNDED;
+            position.y = 0;
 
+        }
 
     }
+
+    private void moveLeft(float delta){
+        position.x -= delta * Constants.GIGA_GAL_MOVE_SPEED;
+    }
+
+
+    private void moveRight(float delta){
+        position.x += delta * Constants.GIGA_GAL_MOVE_SPEED;
+    }
+
+
 
     private void startJump(){
         jumpState = JumpState.JUMPING;
         velocity.y = Constants.JUMP_SPEED;
+        jumpStartTime = TimeUtils.nanoTime();
     }
 
     private void continueJump(){
@@ -69,9 +86,19 @@ public class GigaGal {
             if (jumpDuration < Constants.MAX_JUMP_DURATION) {
                 velocity.y = Constants.JUMP_SPEED;
             } else {
-                jumpState = JumpState.FALLING;
+                endJump();
             }
         }
+    }
+
+    private void endJump(){
+        if (jumpState == JumpState.JUMPING){
+            jumpState = JumpState.FALLING;
+        }
+    }
+
+    private void fall(){
+
     }
 
 
