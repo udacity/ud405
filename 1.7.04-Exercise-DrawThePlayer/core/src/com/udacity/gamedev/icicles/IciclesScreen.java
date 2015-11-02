@@ -14,36 +14,33 @@ public class IciclesScreen implements Screen {
 
     public static final String TAG = IciclesScreen.class.getName();
 
-
-    // TODO: Add an ExtendViewport
     ExtendViewport iciclesViewport;
-
-    // TODO: Add a ShapeRenderer
     ShapeRenderer renderer;
 
-    // TODO: Add an Icicle
+    // TODO: Add a Player (complete Player.java first)
+
+
     Icicle icicle;
 
     @Override
     public void show() {
-        // TODO: Initialize the viewport using the world size constant
         iciclesViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
 
-        // TODO: Initialize the ShapeRenderer
         renderer = new ShapeRenderer();
-
-        // TODO: Set autoShapeType(true) on the ShapeRenderer
         renderer.setAutoShapeType(true);
 
-        // TODO: Create a new Icicle in the middle of the world
+        // TODO: Initialize the player
+
+
         icicle = new Icicle(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
 
     }
 
     @Override
     public void resize(int width, int height) {
-        // TODO: Ensure that the viewport updates correctly
         iciclesViewport.update(width, height, true);
+        // TODO: Reset the player (using init())
+
     }
 
     @Override
@@ -55,22 +52,17 @@ public class IciclesScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        // TODO: Apply the viewport
         iciclesViewport.apply(true);
-
-        // TODO: Clear the screen to the background color
         Gdx.gl.glClearColor(Constants.BACKGROUND_COLOR.r, Constants.BACKGROUND_COLOR.g, Constants.BACKGROUND_COLOR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // TODO: Set the ShapeRenderer's projection matrix
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
-
-        // TODO: Draw the Icicle
-
         renderer.begin(ShapeType.Filled);
+        renderer.setColor(Constants.ICICLE_COLOR);
         icicle.render(renderer);
-        renderer.end();
+        // TODO: Call render() on the player
 
+        renderer.end();
     }
 
     @Override
@@ -83,7 +75,6 @@ public class IciclesScreen implements Screen {
 
     }
 
-    // TODO: Dispose of the ShapeRenderer
     @Override
     public void hide() {
         renderer.dispose();

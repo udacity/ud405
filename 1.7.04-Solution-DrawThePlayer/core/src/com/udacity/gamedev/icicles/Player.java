@@ -10,24 +10,27 @@ public class Player {
 
     public static final String TAG = Player.class.getName();
 
-    // TODO: Add a position
+    // TODO: Add a position (add constants to Constants.java first)
     Vector2 position;
 
     // TODO: Add a viewport
-
     Viewport viewport;
 
-    // TODO: Add constructor that
+    // TODO: Add constructor that accepts and sets the viewport, then calls init()
     public Player(Viewport viewport) {
         this.viewport = viewport;
         init();
     }
 
+    // TODO: Add init() function that moves the character to the bottom center of the screen
     public void init() {
         position = new Vector2(viewport.getWorldWidth() / 2, Constants.PLAYER_HEAD_HEIGHT);
     }
 
+    // TODO: Create a render function that accepts a ShapeRenderer and does the actual drawing
     public void render(ShapeRenderer renderer) {
+
+
         renderer.setColor(Constants.PLAYER_COLOR);
         renderer.set(ShapeType.Filled);
         renderer.circle(position.x, position.y, Constants.PLAYER_HEAD_RADIUS, Constants.PLAYER_HEAD_SEGMENTS);

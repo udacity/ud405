@@ -17,8 +17,9 @@ public class IciclesScreen implements Screen {
     ExtendViewport iciclesViewport;
     ShapeRenderer renderer;
 
-    // TODO: Add a Player
+    // TODO: Add a Player (complete Player.java first)
     Player player;
+
     Icicle icicle;
 
     @Override
@@ -30,6 +31,7 @@ public class IciclesScreen implements Screen {
 
         // TODO: Initialize the player
         player = new Player(iciclesViewport);
+
         icicle = new Icicle(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
 
     }
