@@ -32,6 +32,12 @@ public class Player {
             position.x += delta * Constants.PLAYER_MOVEMENT_SPEED;
         }
 
+        // TODO: Compute accelerometer input = raw input / (gravity * sensitivity)
+
+
+        // TODO: Use the accelerometer input to move the player
+
+
         ensureInBounds();
     }
 
