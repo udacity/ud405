@@ -26,6 +26,7 @@ public class Player {
     }
 
     public void update(float delta) {
+        // TODO: Use Gdx.input.isKeyPressed() to move the player in the appropriate direction when an arrow key is pressed
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
             position.x -= delta * Constants.PLAYER_MOVEMENT_SPEED;
         } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
@@ -36,6 +37,7 @@ public class Player {
     }
 
     private void ensureInBounds() {
+        // TODO: Complete this function to ensure the player is within the viewport
         if (position.x - Constants.PLAYER_HEAD_RADIUS < 0) {
             position.x = Constants.PLAYER_HEAD_RADIUS;
         }

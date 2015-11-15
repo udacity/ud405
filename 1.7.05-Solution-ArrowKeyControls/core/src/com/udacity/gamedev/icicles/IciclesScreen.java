@@ -46,6 +46,7 @@ public class IciclesScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        // TODO: Call update() on player
         player.update(delta);
 
         iciclesViewport.apply(true);

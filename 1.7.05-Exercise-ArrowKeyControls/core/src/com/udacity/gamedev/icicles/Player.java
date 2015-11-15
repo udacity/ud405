@@ -10,14 +10,10 @@ public class Player {
 
     public static final String TAG = Player.class.getName();
 
-    // TODO: Add a position
     Vector2 position;
-
-    // TODO: Add a viewport
 
     Viewport viewport;
 
-    // TODO: Add constructor that
     public Player(Viewport viewport) {
         this.viewport = viewport;
         init();
@@ -25,6 +21,18 @@ public class Player {
 
     public void init() {
         position = new Vector2(viewport.getWorldWidth() / 2, Constants.PLAYER_HEAD_HEIGHT);
+    }
+
+    public void update(float delta) {
+        // TODO: Use Gdx.input.isKeyPressed() to move the player in the appropriate direction when an arrow key is pressed
+
+
+        ensureInBounds();
+    }
+
+    private void ensureInBounds() {
+        // TODO: Complete this function to ensure the player is within the viewport
+
     }
 
     public void render(ShapeRenderer renderer) {
