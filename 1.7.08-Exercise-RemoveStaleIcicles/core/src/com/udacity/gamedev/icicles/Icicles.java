@@ -11,6 +11,7 @@ public class Icicles {
 
     public static final String TAG = Icicles.class.getName();
 
+    // TODO: Use a DelayedRemovalArray to hold our icicles
     Array<Icicle> icicleList;
     Viewport viewport;
 
@@ -20,24 +21,34 @@ public class Icicles {
     }
 
     public void init() {
+        // TODO: Initialize the DelayedRemovalArray
         icicleList = new Array<Icicle>(false, 100);
     }
 
     public void update(float delta) {
         if (MathUtils.random() < delta * Constants.ICICLE_SPAWNS_PER_SECOND) {
 
-                Vector2 newIciclePosition = new Vector2(
-                        MathUtils.random() * viewport.getWorldWidth(),
-                        viewport.getWorldHeight()
-                );
-                Icicle newIcicle = new Icicle(newIciclePosition);
-                icicleList.add(newIcicle);
+            Vector2 newIciclePosition = new Vector2(
+                    MathUtils.random() * viewport.getWorldWidth(),
+                    viewport.getWorldHeight()
+            );
+            Icicle newIcicle = new Icicle(newIciclePosition);
+            icicleList.add(newIcicle);
 
         }
 
         for (Icicle icicle : icicleList) {
             icicle.update(delta);
         }
+
+        // TODO: begin a removal session
+
+
+        // TODO: Remove any icicle completely off the bottom of the screen
+
+
+        // TODO: End removal session
+
 
     }
 
