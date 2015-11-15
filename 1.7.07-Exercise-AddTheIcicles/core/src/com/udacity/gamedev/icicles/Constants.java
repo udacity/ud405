@@ -21,4 +21,9 @@ public class Constants {
     public static final float ICICLES_WIDTH = 0.5f;
     public static final Color ICICLE_COLOR = Color.WHITE;
 
+    // TODO: Add constant for icicle acceleration
+
+
+    // TODO: Add constant for icicle spawns per second
+
 }

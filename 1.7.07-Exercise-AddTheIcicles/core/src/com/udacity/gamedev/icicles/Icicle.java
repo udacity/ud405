@@ -9,8 +9,20 @@ public class Icicle {
 
     Vector2 position;
 
+    // TODO: Add Vector2 for velocity
+
+
     public Icicle(Vector2 position) {
         this.position = position;
+        // TODO: Initialize velocity
+
+    }
+
+    public void update(float delta) {
+        // TODO: Update velocity using icicle accelration constant
+
+
+        // TODO: Update position using velocity
 
     }
 

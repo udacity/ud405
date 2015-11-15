@@ -8,15 +8,21 @@ public class Icicle {
     public static final String TAG = Icicle.class.getName();
 
     Vector2 position;
+
+    // TODO: Add Vector2 for velocity
     Vector2 velocity;
 
     public Icicle(Vector2 position) {
         this.position = position;
+        // TODO: Initialize velocity
         this.velocity = new Vector2();
     }
 
     public void update(float delta) {
+        // TODO: Update velocity using icicle accelration constant
         velocity.mulAdd(Constants.ICICLES_ACCELERATION, delta);
+
+        // TODO: Update position using velocity
         position.mulAdd(velocity, delta);
     }
 

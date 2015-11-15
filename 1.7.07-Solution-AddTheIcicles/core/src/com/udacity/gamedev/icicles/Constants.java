@@ -20,7 +20,11 @@ public class Constants {
 
     public static final float ICICLES_HEIGHT = 1.0f;
     public static final float ICICLES_WIDTH = 0.5f;
-    public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
     public static final Color ICICLE_COLOR = Color.WHITE;
+
+    // TODO: Add constant for icicle acceleration
+    public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
+
+    // TODO: Add constant for icicle spawns per second
     public static final float ICICLE_SPAWNS_PER_SECOND = 10.0f;
 }

@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 
@@ -18,7 +17,8 @@ public class IciclesScreen implements Screen {
     ShapeRenderer renderer;
 
     Player player;
-    Icicle icicle;
+    // TODO: Add an instance of Icicles
+
 
     @Override
     public void show() {
@@ -28,7 +28,8 @@ public class IciclesScreen implements Screen {
         renderer.setAutoShapeType(true);
 
         player = new Player(iciclesViewport);
-        icicle = new Icicle(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
+        // TODO: Initialize icicles
+
 
     }
 
@@ -36,6 +37,8 @@ public class IciclesScreen implements Screen {
     public void resize(int width, int height) {
         iciclesViewport.update(width, height, true);
         player.init();
+        // TODO: Reset icicles
+
     }
 
     @Override
@@ -46,6 +49,8 @@ public class IciclesScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        // TODO: Update Icicles
+
         player.update(delta);
 
         iciclesViewport.apply(true);
@@ -54,8 +59,8 @@ public class IciclesScreen implements Screen {
 
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
         renderer.begin(ShapeType.Filled);
-        renderer.setColor(Constants.ICICLE_COLOR);
-        icicle.render(renderer);
+        // TODO: Render Icicles
+
         player.render(renderer);
         renderer.end();
 
