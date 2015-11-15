@@ -48,6 +48,15 @@ public class Player {
         }
     }
 
+    public boolean hitByIcicle(Icicles icicles) {
+        boolean isHit = false;
+
+        // TODO: Loop over icicles, checking if the point of any icicle is within the player's head
+
+
+        return isHit;
+    }
+
     public void render(ShapeRenderer renderer) {
         renderer.setColor(Constants.PLAYER_COLOR);
         renderer.set(ShapeType.Filled);
