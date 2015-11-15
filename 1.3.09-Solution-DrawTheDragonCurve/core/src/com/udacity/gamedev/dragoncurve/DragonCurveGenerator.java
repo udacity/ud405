@@ -31,15 +31,16 @@ public class DragonCurveGenerator {
         turns.add(Direction.LEFT);
 
         for (int i = 0; i < recursions; i++){
-            LinkedList<Direction> reversed = new LinkedList<Direction>();
             // TODO: Create a reversed copy of turns
+            LinkedList<Direction> reversed = new LinkedList<Direction>();
             reversed.addAll(turns);
             Collections.reverse(reversed);
 
             // TODO: Add a left turn to turns
             turns.add(Direction.LEFT);
+
+            // TODO: Add reflected version of reversed to turns
             for (Direction turn : reversed){
-                // TODO: Add reflected version of reversed to turns
                 switch (turn){
                     case LEFT:
                         turns.add(Direction.RIGHT);
@@ -49,7 +50,6 @@ public class DragonCurveGenerator {
                 }
             }
         }
-
         return turns;
     }
 
