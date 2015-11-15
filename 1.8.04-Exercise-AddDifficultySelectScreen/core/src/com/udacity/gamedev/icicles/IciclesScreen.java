@@ -1,6 +1,7 @@
 package com.udacity.gamedev.icicles;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -15,11 +16,13 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.udacity.gamedev.icicles.Constants.Difficulty;
 
 
-public class IciclesScreen implements Screen {
+public class IciclesScreen extends InputAdapter implements Screen {
 
     public static final String TAG = IciclesScreen.class.getName();
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
+
+    // TODO: Add IciclesGame member variable
 
     Difficulty difficulty;
 
@@ -35,7 +38,10 @@ public class IciclesScreen implements Screen {
 
     int topScore;
 
+    // TODO: Accept IciclesGame in the constructor
     public IciclesScreen(Difficulty difficulty) {
+        // TODO: Save the IciclesGame
+
         this.difficulty = difficulty;
     }
 
@@ -55,6 +61,8 @@ public class IciclesScreen implements Screen {
         player = new Player(iciclesViewport);
         icicles = new Icicles(iciclesViewport, difficulty);
 
+        Gdx.input.setInputProcessor(this);
+
         topScore = 0;
     }
 
@@ -70,8 +78,7 @@ public class IciclesScreen implements Screen {
 
     @Override
     public void dispose() {
-        renderer.dispose();
-        batch.dispose();
+
     }
 
 
@@ -106,6 +113,7 @@ public class IciclesScreen implements Screen {
                 0, Align.right, false);
 
         batch.end();
+
     }
 
     @Override
@@ -120,6 +128,15 @@ public class IciclesScreen implements Screen {
 
     @Override
     public void hide() {
+        renderer.dispose();
+        batch.dispose();
 
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        // TODO: Tell IciclesGame to show the difficulty screen
+
+        return true;
     }
 }

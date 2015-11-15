@@ -22,6 +22,7 @@ public class IciclesScreen extends InputAdapter implements Screen {
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 
+    // TODO: Add IciclesGame member variable
     IciclesGame game;
     Difficulty difficulty;
 
@@ -37,7 +38,9 @@ public class IciclesScreen extends InputAdapter implements Screen {
 
     int topScore;
 
+    // TODO: Accept IciclesGame in the constructor
     public IciclesScreen(IciclesGame game, Difficulty difficulty) {
+        // TODO: Save the IciclesGame
         this.game = game;
         this.difficulty = difficulty;
     }
@@ -75,8 +78,7 @@ public class IciclesScreen extends InputAdapter implements Screen {
 
     @Override
     public void dispose() {
-        renderer.dispose();
-        batch.dispose();
+
     }
 
 
@@ -87,7 +89,6 @@ public class IciclesScreen extends InputAdapter implements Screen {
         if (player.hitByIcicle(icicles)) {
             icicles.init();
         }
-
 
         iciclesViewport.apply(true);
         Gdx.gl.glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1);
@@ -127,11 +128,14 @@ public class IciclesScreen extends InputAdapter implements Screen {
 
     @Override
     public void hide() {
+        renderer.dispose();
+        batch.dispose();
 
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        // TODO: Tell IciclesGame to show the difficulty screen
         game.showDifficultyScreen();
         return true;
     }

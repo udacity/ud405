@@ -8,6 +8,17 @@ public class IciclesGame extends Game {
 
     @Override
     public void create() {
-        setScreen(new IciclesScreen(Difficulty.HARD));
+        setScreen(new DifficultyScreen(this));
+    }
+
+
+    public void showDifficultyScreen() {
+        // TODO: Show the difficulty screen
+
+    }
+
+    public void showIciclesScreen(Difficulty difficulty) {
+        // TODO: Show the Icicles screen with the appropriate difficulty
+
     }
 }
