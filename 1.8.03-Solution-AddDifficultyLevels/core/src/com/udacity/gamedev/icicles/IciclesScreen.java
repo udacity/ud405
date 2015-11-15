@@ -21,6 +21,7 @@ public class IciclesScreen implements Screen {
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 
+    // TODO: Add Difficulty
     Difficulty difficulty;
 
     ExtendViewport iciclesViewport;
@@ -35,7 +36,9 @@ public class IciclesScreen implements Screen {
 
     int topScore;
 
+    // TODO: Accept a Difficulty in the constructor
     public IciclesScreen(Difficulty difficulty) {
+        // TODO: Set Difficulty
         this.difficulty = difficulty;
     }
 
@@ -53,6 +56,7 @@ public class IciclesScreen implements Screen {
         font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
         player = new Player(iciclesViewport);
+        // TODO: Initialize icicles with the difficulty
         icicles = new Icicles(iciclesViewport, difficulty);
 
         topScore = 0;
@@ -99,6 +103,7 @@ public class IciclesScreen implements Screen {
 
         topScore = Math.max(topScore, icicles.iciclesDodged);
 
+        // TODO: Show Difficulty level in the top left
         font.draw(batch, "Deaths: " + player.deaths + "\nDifficulty: " + difficulty.label,
                 Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
         font.draw(batch, "Score: " + icicles.iciclesDodged + "\nTop Score: " + topScore,

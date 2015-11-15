@@ -26,26 +26,17 @@ public class Constants {
     public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480.0f;
     public static final float HUD_MARGIN = 20.0f;
 
-    public static final float DIFFICULTY_WORLD_SIZE = 480.0f;
-    public static final float DIFFICULTY_BUBBLE_RADIUS = DIFFICULTY_WORLD_SIZE / 9;
-    public static final float DIFFICULTY_LABEL_SCALE = 1.5f;
-
+    // TODO: Create constants for difficulty labels ("Cold", "Colder", "Coldest")
     public static final String EASY_LABEL = "Cold";
     public static final String MEDIUM_LABEL = "Colder";
     public static final String HARD_LABEL = "Coldest";
 
-    public static final Color EASY_COLOR = new Color(0.2f, 0.2f, 1, 1);
-    public static final Color MEDIUM_COLOR = new Color(0.5f, 0.5f, 1, 1);
-    public static final Color HARD_COLOR = new Color(0.7f, 0.7f, 1, 1);
-
+    // TODO: Create constants for the icicle spawn rates for the various difficulties
     public static final float EASY_SPAWNS_PER_SECOND = 5;
     public static final float MEDIUM_SPAWNS_PER_SECOND = 15;
     public static final float HARD_SPAWNS_PER_SECOND = 25;
 
-    public static final Vector2 EASY_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 4, DIFFICULTY_WORLD_SIZE / 2);
-    public static final Vector2 MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2);
-    public static final Vector2 HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE * 3 / 4, DIFFICULTY_WORLD_SIZE / 2);
-
+    // TODO: Create Difficulty enum holding the spawn rate and label for each difficulty
     public enum Difficulty {
         EASY(EASY_SPAWNS_PER_SECOND, EASY_LABEL),
         MEDIUM(MEDIUM_SPAWNS_PER_SECOND, MEDIUM_LABEL),

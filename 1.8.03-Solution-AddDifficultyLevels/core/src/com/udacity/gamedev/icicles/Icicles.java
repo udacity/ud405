@@ -12,13 +12,16 @@ public class Icicles {
 
     public static final String TAG = Icicles.class.getName();
 
+    // TODO: Add a Difficulty
     Difficulty difficulty;
 
     int iciclesDodged;
     DelayedRemovalArray<Icicle> icicleList;
     Viewport viewport;
 
+    // TODO: Accept a difficulty in the constructor
     public Icicles(Viewport viewport, Difficulty difficulty) {
+        // TODO: Set difficulty
         this.difficulty = difficulty;
         this.viewport = viewport;
         init();
@@ -30,6 +33,7 @@ public class Icicles {
     }
 
     public void update(float delta) {
+        // TODO: Use the difficulty's spawn rate
         if (MathUtils.random() < delta * difficulty.spawnRate) {
             Vector2 newIciclePosition = new Vector2(
                     MathUtils.random() * viewport.getWorldWidth(),
