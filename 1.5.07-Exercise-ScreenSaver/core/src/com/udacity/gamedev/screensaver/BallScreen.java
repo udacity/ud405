@@ -20,7 +20,7 @@ public class BallScreen extends ScreenAdapter implements InputProcessor {
 
     // TODO: When a single ball is working try a bunch of balls.
     // TODO: See how many balls you can add before your computer starts slowing down.
-    private static final int BALL_COUNT = 100000;
+    private static final int BALL_COUNT = 0;
     Array<BouncingBall> balls;
 
     @Override
