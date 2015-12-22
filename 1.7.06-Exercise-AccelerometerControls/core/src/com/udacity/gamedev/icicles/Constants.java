@@ -15,10 +15,10 @@ public class Constants {
     public static final float PLAYER_MOVEMENT_SPEED = 10.0f;
 
     // TODO: Add constant for Accelerometer sensitivity
-    public static final float ACCELEROMETER_SENSITIVITY = 0.5f;
+
 
     // TODO: Add constant for acceleration due to gravity (9.8)
-    public static final float GRAVITATIONAL_ACCELERATION = 9.8f;
+
 
     public static final float ICICLES_HEIGHT = 1.0f;
     public static final float ICICLES_WIDTH = 0.5f;
