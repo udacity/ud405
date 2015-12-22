@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -54,7 +55,7 @@ public class SierpinskiTriangle extends ApplicationAdapter {
     private void inscribeSierpinskiTriangle(ShapeRenderer shapeRenderer, float size, int recursions) {
         Vector2 corner1 = new Vector2(0, 0);
         Vector2 corner2 = new Vector2(size, 0);
-        Vector2 corner3 = new Vector2(size / 2, size);
+        Vector2 corner3 = new Vector2(size / 2, size * MathUtils.sin(MathUtils.PI/3f));
         drawSierpinskiTriangle(shapeRenderer, corner1, corner2, corner3, recursions);
     }
 
