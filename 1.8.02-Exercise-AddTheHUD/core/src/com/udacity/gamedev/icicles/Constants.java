@@ -23,4 +23,10 @@ public class Constants {
     public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
     public static final Color ICICLE_COLOR = Color.WHITE;
     public static final float ICICLE_SPAWNS_PER_SECOND = 10.0f;
+
+    // TODO: Add screen reference size for scaling the HUD (480 works well)
+
+
+    // TODO: Add constant for the margin between the HUD and screen edge
+
 }
