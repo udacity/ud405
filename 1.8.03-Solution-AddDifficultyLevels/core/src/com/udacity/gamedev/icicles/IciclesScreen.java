@@ -19,8 +19,6 @@ public class IciclesScreen implements Screen {
 
     public static final String TAG = IciclesScreen.class.getName();
 
-    public static final Color BACKGROUND_COLOR = Color.BLUE;
-
     // TODO: Add Difficulty
     Difficulty difficulty;
 
@@ -88,7 +86,7 @@ public class IciclesScreen implements Screen {
         }
 
         iciclesViewport.apply(true);
-        Gdx.gl.glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1);
+        Gdx.gl.glClearColor(Constants.BACKGROUND_COLOR.r, Constants.BACKGROUND_COLOR.g, Constants.BACKGROUND_COLOR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
