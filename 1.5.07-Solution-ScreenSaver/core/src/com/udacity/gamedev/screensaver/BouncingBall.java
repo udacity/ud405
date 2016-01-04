@@ -10,13 +10,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.Random;
 
 /**
- *
- *
- * This class represents a ball, bouncing around the screen. It maintains a position and velocity, and it needs to knows how to update its position, based on how much time has passed.
+ * This class represents a ball, bouncing around the screen. It maintains a position and velocity,
+ * and it needs to knows how to update its position, based on how much time has passed.
  *
  * and has basic physics for colliding with the "walls" (the edges of the screen).
  */
-
 
 
 public class BouncingBall {

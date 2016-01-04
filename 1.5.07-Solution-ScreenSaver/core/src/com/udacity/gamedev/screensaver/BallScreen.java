@@ -13,14 +13,12 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 public class BallScreen extends ScreenAdapter implements InputProcessor {
 
     public static final float WORLD_SIZE = 480.0f;
-
+    // TODO: When a single ball is working try a bunch of balls.
+    // TODO: See how many balls you can add before your computer starts slowing down.
+    private static final int BALL_COUNT = 10000;
     ShapeRenderer renderer;
     ExtendViewport viewport;
     BouncingBall ball;
-
-    // TODO: When a single ball is working try a bunch of balls.
-    // TODO: See how many balls you can add before your computer starts slowing down.
-    private static final int BALL_COUNT = 0;
     Array<BouncingBall> balls;
 
     @Override
@@ -30,15 +28,15 @@ public class BallScreen extends ScreenAdapter implements InputProcessor {
         viewport = new ExtendViewport(WORLD_SIZE, WORLD_SIZE);
         ball = new BouncingBall(viewport);
         balls = new Array<BouncingBall>();
-        for (int i = 0; i < BALL_COUNT; i++){
+        for (int i = 0; i < BALL_COUNT; i++) {
             balls.add(new BouncingBall(viewport));
         }
         Gdx.input.setInputProcessor(this);
     }
 
-    private void initBalls(){
+    private void initBalls() {
         ball.init(viewport);
-        for (BouncingBall ball : balls){
+        for (BouncingBall ball : balls) {
             ball.init(viewport);
         }
     }
@@ -68,8 +66,7 @@ public class BallScreen extends ScreenAdapter implements InputProcessor {
         ball.render(renderer);
 
 
-
-        for (BouncingBall ball : balls){
+        for (BouncingBall ball : balls) {
             ball.update(delta, viewport);
             ball.render(renderer);
         }
@@ -85,7 +82,7 @@ public class BallScreen extends ScreenAdapter implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        if (keycode == Keys.SPACE ){
+        if (keycode == Keys.SPACE) {
             initBalls();
         }
         return false;
