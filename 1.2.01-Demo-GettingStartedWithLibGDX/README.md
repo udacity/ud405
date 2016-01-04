@@ -24,7 +24,7 @@ First things first, we need to install Android Studio. Now I know what you're th
 
 And of course Android Studio will make deploying the Android version of our game super easy, and it doesn't even blink at deploying the iOS and HTML versions as well.
 
-For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on Android Studio installation. You can check it out at udacity.com/ud808, or by following the link in the Instructor Notes below the video. When you've got Android Studio up and running, click the box below.
+For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on [Android Studio installation](https://www.udacity.com/course/how-to-install-android-studio--ud808). 
 
 ## Installing Required SDK Components
 
@@ -47,6 +47,7 @@ The simplest way to run the desktop backend is to ask Gradle to execute the `run
 
 ```
     $ ./gradlew desktop:run
+    $ gradlew desktop:run (Windows)
 ```
 
 It's nice to be able to run the project using Ctrl-r, and to do that we can set up a run
@@ -65,6 +66,7 @@ For completeness's sake, if you want to launch the Android backend from the comm
 
 ```
     $ ./gradlew android:installDebug android:run
+    $ gradlew android:installDebug android:run (Windows)
 ```
 
 ## Make a change!
