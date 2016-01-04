@@ -26,6 +26,16 @@ And of course Android Studio will make deploying the Android version of our game
 
 For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on [Android Studio installation](https://www.udacity.com/course/how-to-install-android-studio--ud808). 
 
+## Importing a libGDX project
+
+It's finally time to import your first project. There are a ton of projects in the course repository, but we're going to start with the one named 1.2.01-Demo-GettingStartedWithLibGDX.
+
+Open up Android Studio, and close any open projects until you get to the splash screen. On the Quick Start pane, select Import project. You can then click the second button from the left to jump to the desktop. If you don't see the ud405 folder, you can click the blue circle arrows to refresh the file picker. Once you can see the ud405 folder, select 1.2.01-Demo-GettingStartedWithLibGDX and hit "ok".
+
+A small dialog will pop up that says something like "Building 'FirstDemo' Gradle project info. This is when Android Studio is talking with Gradle to figure out what source files and resources are part of this project, and what tasks can be done with this project. 
+
+If all goes well, there will be no errors, and we've successfully imported our first project.
+
 ## Installing Required SDK Components
 
 One of the functions of Gradle is to define what version of various tools and libraries your project needs before it can be built. Gradle can usually go download those libraries for you, but it's not able to do that with Android build tools and SDK platforms.
