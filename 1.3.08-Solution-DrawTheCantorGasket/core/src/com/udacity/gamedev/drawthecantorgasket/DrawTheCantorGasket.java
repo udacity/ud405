@@ -18,17 +18,17 @@ The Cantor gasket is a fractal where we start with a white square. We devide tha
 
 public class DrawTheCantorGasket extends ApplicationAdapter {
 
-    ShapeRenderer shapeRenderer;
     // TODO: Set a constant for how many recursions to draw
     private final static int RECURSIONS = 5;
+    ShapeRenderer shapeRenderer;
 
     @Override
-    public void create () {
+    public void create() {
         shapeRenderer = new ShapeRenderer();
     }
 
     @Override
-    public void render () {
+    public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Rectangle bounds = findLargestSquare();
@@ -48,7 +48,7 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
         shapeRenderer.end();
     }
 
-    private void punchCantorGasket(float x, float y, float size, int recursions){
+    private void punchCantorGasket(float x, float y, float size, int recursions) {
         // TODO: Base case, if recursions = 0, return
         if (recursions == 0) {
             return;
@@ -57,31 +57,39 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
         shapeRenderer.rect(x + size / 3, y + size / 3, size / 3, size / 3);
 
         // TODO: Call punchCantorGasket on all the other thirds
-        float newSize = size/3;
+        float newSize = size / 3;
 
         punchCantorGasket(x, y, newSize, recursions - 1);
         punchCantorGasket(x + newSize, y, newSize, recursions - 1);
-        punchCantorGasket(x + 2 * newSize, y, newSize, recursions-1);
-        punchCantorGasket(x, y + newSize, newSize, recursions-1);
+        punchCantorGasket(x + 2 * newSize, y, newSize, recursions - 1);
+        punchCantorGasket(x, y + newSize, newSize, recursions - 1);
         punchCantorGasket(x + 2 * newSize, y + newSize, newSize, recursions - 1);
         punchCantorGasket(x, y + 2 * newSize, newSize, recursions - 1);
-        punchCantorGasket(x + newSize, y + 2 * newSize, newSize, recursions-1);
+        punchCantorGasket(x + newSize, y + 2 * newSize, newSize, recursions - 1);
         punchCantorGasket(x + 2 * newSize, y + 2 * newSize, newSize, recursions - 1);
+
+        // Here's a more compact way to perform the recursive calls.
+        // Thanks to GitHub user khafan! https://github.com/khafan
+
+//        for (int i = 0; i < 9; i++) {
+//            if (i == 4) continue;
+//            punchCantorGasket(i%3 * size/3 + x, i/3 * size/3 + y, size/3, recursions - 1);
+//        }
     }
 
-    private Rectangle findLargestSquare(){
+    private Rectangle findLargestSquare() {
         Rectangle largestSquare = new Rectangle();
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
 
-        if (screenWidth > screenHeight){
-            largestSquare.x = (screenWidth - screenHeight)/2;
+        if (screenWidth > screenHeight) {
+            largestSquare.x = (screenWidth - screenHeight) / 2;
             largestSquare.y = 0;
             largestSquare.width = screenHeight;
             largestSquare.height = screenHeight;
         } else {
             largestSquare.x = 0;
-            largestSquare.y = (screenHeight - screenWidth)/2;
+            largestSquare.y = (screenHeight - screenWidth) / 2;
             largestSquare.width = screenWidth;
             largestSquare.height = screenWidth;
         }
