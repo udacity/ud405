@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.Align;
  * TODO: 2 Check out this screen class second
  *
  * Screens are very similar to ApplicationListeners, with a couple differences. Instead of create(),
- * screens get a show() call. Instead of pause(), screens get a hide() call, and the render() call
- * received by a screen includes an argument called delta.
+ * screens get a show() call, and anything you would do in dispose() should usually be done in
+ * hide(). Finally, the render() call received by a screen includes an argument called delta.
  *
  * The argument delta is the number of seconds after the previous frame that this frame is expected
  * to hit the screen. In a normal game, running at 60 frames per second, this will almost always be
@@ -48,7 +48,6 @@ public class DeltaScreen implements Screen {
     @Override
     public void dispose() {
         Gdx.app.log(TAG, "dispose() called");
-        batch.dispose();
     }
 
     @Override
@@ -78,5 +77,6 @@ public class DeltaScreen implements Screen {
     @Override
     public void hide() {
         Gdx.app.log(TAG, "hide() called");
+        batch.dispose();
     }
 }
