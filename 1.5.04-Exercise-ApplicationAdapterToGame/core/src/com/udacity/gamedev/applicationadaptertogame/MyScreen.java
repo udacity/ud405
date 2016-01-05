@@ -11,7 +11,7 @@ package com.udacity.gamedev.applicationadaptertogame;
  *
  * TODO: Move everything from MyGame.create() to MyScreen.show()
  *
- * TODO: Move everything from MyGame.dispose() to MyScreen.dispose()
+ * TODO: Move everything from MyGame.dispose() to MyScreen.hide()
  *
  * TODO: Move everything from MyGame.resize() to MyScreen.resize()
  *

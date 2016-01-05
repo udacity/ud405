@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
  *
  * TODO: Move everything from MyGame.create() to MyScreen.show()
  *
- * TODO: Move everything from MyGame.dispose() to MyScreen.dispose()
+ * TODO: Move everything from MyGame.dispose() to MyScreen.hide()
  *
  * TODO: Move everything from MyGame.resize() to MyScreen.resize()
  *
@@ -81,12 +81,12 @@ public class MyScreen implements Screen {
 
     @Override
     public void hide() {
-
+        batch.dispose();
+        font.dispose();
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        font.dispose();
+
     }
 }
