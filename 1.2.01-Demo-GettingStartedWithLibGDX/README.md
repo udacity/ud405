@@ -24,7 +24,7 @@ First things first, we need to install Android Studio. Now I know what you're th
 
 And of course Android Studio will make deploying the Android version of our game super easy, and it doesn't even blink at deploying the iOS and HTML versions as well.
 
-For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on [Android Studio installation](https://www.udacity.com/course/how-to-install-android-studio--ud808). 
+For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on [Android Studio installation](https://www.udacity.com/course/how-to-install-android-studio--ud808).
 
 ## Importing a libGDX project
 
@@ -32,7 +32,7 @@ It's finally time to import your first project. There are a ton of projects in t
 
 Open up Android Studio, and close any open projects until you get to the splash screen. On the Quick Start pane, select Import project. You can then click the second button from the left to jump to the desktop. If you don't see the ud405 folder, you can click the blue circle arrows to refresh the file picker. Once you can see the ud405 folder, select 1.2.01-Demo-GettingStartedWithLibGDX and hit "ok".
 
-A small dialog will pop up that says something like "Building 'FirstDemo' Gradle project info. This is when Android Studio is talking with Gradle to figure out what source files and resources are part of this project, and what tasks can be done with this project. 
+A small dialog will pop up that says something like "Building 'FirstDemo' Gradle project info. This is when Android Studio is talking with Gradle to figure out what source files and resources are part of this project, and what tasks can be done with this project.
 
 If all goes well, there will be no errors, and we've successfully imported our first project.
 
@@ -69,8 +69,7 @@ Anyway, now check the drop down in the toolbar says Desktop, and hit the green a
 
 ## Running the Android Backend
 
-Runnin the Android backend is acually easier than running the Desktop backend, assuming you've already [set up your Android device](https://www.udacity.com/course/viewer#!/c-ud808/l-4216368924/m-4291353613). Click on the run configuration
-dropdown in the toolbar, and swtich back to "Android", then hit the green button, or press Ctrl-r.
+Running the Android backend is actually easier than running the Desktop backend, assuming you've already [set up your Android device](https://www.udacity.com/course/viewer#!/c-ud808/l-4216368924/m-4291353613). Click on the run configuration dropdown in the toolbar, and switch back to "Android", then hit the green button, or press Ctrl-r.
 
 For completeness's sake, if you want to launch the Android backend from the command line, the tasks you need are:
 
