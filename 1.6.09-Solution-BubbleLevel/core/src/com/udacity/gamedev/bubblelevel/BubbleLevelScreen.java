@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.util.Locale;
+
 
 public class BubbleLevelScreen extends ScreenAdapter {
 
@@ -83,7 +85,8 @@ public class BubbleLevelScreen extends ScreenAdapter {
         batch.begin();
 
 
-        String message = String.format("Accelerometer reads:\nx = %.2f\ny = %.2f\nz = %.2f\ntotal = %.2f\nmax = %.2f\nmin = %.2f", xAxis, yAxis, zAxis, totalAcceleration, maxAcceleration, minAcceleration);
+        String message = String.format(Locale.ENGLISH,"Accelerometer reads:\nx = %.2f\ny = %.2f\nz = %.2f\ntotal = %.2f\nmax = %.2f\nmin = %.2f", xAxis, yAxis, zAxis, totalAcceleration, maxAcceleration, minAcceleration);
+
         font.draw(batch, message, 40, textViewport.getWorldHeight() - 40);
         batch.end();
 
@@ -98,7 +101,7 @@ public class BubbleLevelScreen extends ScreenAdapter {
         // TODO: Draw a circle to indicate 9.8m/s^2
         renderer.circle(WORLD_SIZE / 2,
                 WORLD_SIZE / 2,
-                WORLD_SIZE / 4, 64);
+                WORLD_SIZE / 4 + WORLD_SIZE / 50, 64);
 
         renderer.setColor(Color.GREEN);
 
