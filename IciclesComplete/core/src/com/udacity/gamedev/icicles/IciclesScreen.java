@@ -102,10 +102,11 @@ public class IciclesScreen extends InputAdapter implements Screen {
 
         topScore = Math.max(topScore, icicles.iciclesDodged);
 
-        font.draw(batch, "Deaths: " + player.deaths + "\nDifficulty: " + difficulty.label,
-                Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
-        font.draw(batch, "Score: " + icicles.iciclesDodged + "\nTop Score: " + topScore,
-                hudViewport.getWorldWidth() - Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
+        final String leftHudText = Constants.DEATHS_LABEL + player.deaths + "\n" + Constants.DIFFICULTY_LABEL + difficulty.label;
+        final String rightHudText = Constants.SCORE_LABEL + icicles.iciclesDodged + "\n" + Constants.TOP_SCORE_LABEL + topScore;
+
+        font.draw(batch, leftHudText, Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
+        font.draw(batch, rightHudText, hudViewport.getWorldWidth() - Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
                 0, Align.right, false);
 
         batch.end();
