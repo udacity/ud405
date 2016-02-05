@@ -22,6 +22,7 @@ public class Constants {
     public static final float ICICLES_WIDTH = 0.5f;
     public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
     public static final Color ICICLE_COLOR = Color.WHITE;
+    public static final int INITIAL_ICICLES_ARRAY_CAPACITY = 100;
 
     public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480.0f;
     public static final float HUD_MARGIN = 20.0f;

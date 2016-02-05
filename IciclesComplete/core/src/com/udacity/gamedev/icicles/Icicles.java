@@ -25,7 +25,7 @@ public class Icicles {
     }
 
     public void init() {
-        icicleList = new DelayedRemovalArray<Icicle>(false, 100);
+        icicleList = new DelayedRemovalArray<Icicle>(false, Constants.INITIAL_ICICLES_ARRAY_CAPACITY);
         iciclesDodged = 0;
     }
 
