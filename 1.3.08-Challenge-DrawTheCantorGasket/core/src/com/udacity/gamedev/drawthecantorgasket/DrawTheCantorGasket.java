@@ -45,6 +45,7 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
 
 
     private void punchCantorGasket(float x, float y, float size, int recursions){
+        // Note that size means the height and width of the square
         // TODO: Base case, if recursions = 0, return
 
         // TODO: Draw a black square in the middle square
