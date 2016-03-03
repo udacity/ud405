@@ -78,8 +78,9 @@ public class IciclesScreen implements Screen {
     @Override
     public void dispose() {
         renderer.dispose();
-        // TODO: Dispose of the SpriteBatch
+        // TODO: Dispose of the SpriteBatch and font
         batch.dispose();
+        font.dispose();
     }
 
 
