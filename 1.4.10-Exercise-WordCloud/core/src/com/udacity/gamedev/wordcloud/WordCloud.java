@@ -55,6 +55,7 @@ public class WordCloud extends ApplicationAdapter {
     @Override
     public void dispose() {
         batch.dispose();
+        font.dispose();
     }
 
     @Override
