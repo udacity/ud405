@@ -24,7 +24,7 @@ First things first, we need to install Android Studio. Now I know what you're th
 
 And of course Android Studio will make deploying the Android version of our game super easy, and it doesn't even blink at deploying the iOS and HTML versions as well.
 
-For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on [Android Studio installation](https://www.udacity.com/course/how-to-install-android-studio--ud808).
+For specific installation instructions, I'm going to hand you off to Lyla, who made an awesome lesson on [Android Studio installation](https://www.udacity.com/course/viewer#!/c-ud808/l-4216368924/m-4307278589).
 
 ## Importing a libGDX project
 
