@@ -48,6 +48,11 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
         shapeRenderer.end();
     }
 
+    @Override
+    public void resize(int width, int height) {
+        shapeRenderer = new ShapeRenderer();
+    }
+
     private void punchCantorGasket(float x, float y, float size, int recursions) {
         // TODO: Base case, if recursions = 0, return
         if (recursions == 0) {
@@ -87,6 +92,8 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
         Rectangle largestSquare = new Rectangle();
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
+
+        Gdx.app.log("Derp",  "Screen size " + screenWidth + " " + screenHeight);
 
         if (screenWidth > screenHeight) {
             largestSquare.x = (screenWidth - screenHeight) / 2;

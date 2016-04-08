@@ -43,6 +43,11 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
         shapeRenderer.end();
     }
 
+    @Override
+    public void resize(int width, int height) {
+        shapeRenderer = new ShapeRenderer();
+    }
+
 
     private void punchCantorGasket(float x, float y, float size, int recursions){
         // Note that size means the height and width of the square
