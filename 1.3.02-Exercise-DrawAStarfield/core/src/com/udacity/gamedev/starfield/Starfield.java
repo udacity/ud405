@@ -55,6 +55,12 @@ public class Starfield extends ApplicationAdapter {
     }
 
     @Override
+    public void resize(int width, int height) {
+        initStars(STAR_DENSITY);
+        shapeRenderer = new ShapeRenderer();
+    }
+
+    @Override
     public void render() {
         // TODO: Make the night sky black
         Gdx.gl.glClearColor(1, 0, 0, 1);

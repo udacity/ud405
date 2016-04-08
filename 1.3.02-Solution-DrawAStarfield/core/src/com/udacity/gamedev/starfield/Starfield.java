@@ -64,6 +64,12 @@ public class Starfield extends ApplicationAdapter {
     }
 
     @Override
+    public void resize(int width, int height) {
+        initStars(STAR_DENSITY);
+        shapeRenderer = new ShapeRenderer();
+    }
+
+    @Override
     public void render () {
         // Wanna see what happens when we accidentally generate the stars every frame?
         // initStars(STAR_DENSITY);
