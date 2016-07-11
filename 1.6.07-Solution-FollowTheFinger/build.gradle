@@ -6,8 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
-        classpath 'com.android.tools.build:gradle:1.2.3'
-        classpath 'org.robovm:robovm-gradle-plugin:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.2.0-alpha5'
+        classpath 'org.robovm:robovm-gradle-plugin:1.14.0'
     }
 }
 
@@ -19,7 +19,7 @@ allprojects {
     ext {
         appName = 'InputTestbed'
         gdxVersion = '1.6.4'
-        roboVMVersion = '1.5.0'
+        roboVMVersion = '1.14.0'
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.4.0'
         aiVersion = '1.5.0'
