@@ -56,7 +56,7 @@ public class PointDrawing implements ApplicationListener {
 
     /**
      * When Java finds that it's running out of memory, it performs a garbage collection to free up
-     * memory held by objects that are no longer in use. Unfortunatly, garbage collection is slow,
+     * memory held by objects that are no longer in use. Unfortunately, garbage collection is slow,
      * and nothing else can happen while the collection is in process. In a game, this can mean a
      * momentary freeze, which players hate with a burning passion. LibGDX does two things to avoid
      * this. First, there are a number of places where we need to manage our own memory. Since we
