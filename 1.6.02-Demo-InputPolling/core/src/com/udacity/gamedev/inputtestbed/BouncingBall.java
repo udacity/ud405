@@ -56,7 +56,7 @@ public class BouncingBall {
     /**
      * TODO: Here's the polling action
      *
-     * We've defined a base radius for the ball, and we determine the actul radius by multiplying
+     * We've defined a base radius for the ball, and we determine the actual radius by multiplying
      * the base radius by the radius multiplier. We start the radius multiplier at 1.0, and then we
      * adjust it up or down each frame based on whether or not the Z or X keys are pressed. We also
      * have a radius growth rate constant that determines how fast the radius multiplier changes.
