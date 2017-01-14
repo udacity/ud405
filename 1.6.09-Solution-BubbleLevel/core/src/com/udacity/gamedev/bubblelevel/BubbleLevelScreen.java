@@ -115,8 +115,8 @@ public class BubbleLevelScreen extends ScreenAdapter {
 
         // TODO: Draw the bubble
         renderer.circle(
-                WORLD_SIZE * (.5f - .25f * yAxis / 9.8f),
-                WORLD_SIZE * (.5f + .25f * xAxis / 9.8f),
+                WORLD_SIZE * (.5f - .25f * yAxis / totalAcceleration),
+                WORLD_SIZE * (.5f + .25f * xAxis / totalAcceleration),
                 WORLD_SIZE / 50,
                 64
         );
