@@ -19,8 +19,8 @@ public class UdacityScreen extends InputAdapter implements Screen {
     ParticleEffectPool touchEffectPool;
     Array<PooledEffect> effects = new Array<PooledEffect>();
 
-    private static final Color UDACITY_ORANGE = new Color(228.0f/225.0f, 127.0f/225.0f, 57.0f/225.0f, 1.0f);
-    private static final Color UDACITY_BLUE = new Color(36.0f/225.0f, 73.0f/225.0f, 96.0f/225.0f, 1.0f);
+    private static final Color UDACITY_ORANGE = new Color(228.0f / 225.0f, 127.0f / 225.0f, 57.0f / 225.0f, 1.0f);
+    private static final Color UDACITY_BLUE = new Color(36.0f / 225.0f, 73.0f / 225.0f, 96.0f / 225.0f, 1.0f);
     private static final float LOGO_WIDTH = 200.0f;
     private float logoHeight;
 
@@ -28,7 +28,7 @@ public class UdacityScreen extends InputAdapter implements Screen {
     public void show() {
         batch = new SpriteBatch();
         logo = new Texture("udacity_logo_white.png");
-        logoHeight = logo.getHeight() * LOGO_WIDTH/ logo.getWidth();
+        logoHeight = logo.getHeight() * LOGO_WIDTH / logo.getWidth();
 
         ParticleEffect touchEffect = new ParticleEffect();
         touchEffect.load(Gdx.files.internal("UdacityEmitter.p"), Gdx.files.internal(""));
@@ -39,12 +39,14 @@ public class UdacityScreen extends InputAdapter implements Screen {
 
     @Override
     public void render(float delta) {
+
         // TODO: Make this UDACITY_BLUE instead
         clearScreen(UDACITY_ORANGE);
+
         batch.begin();
         batch.draw(logo,
-                (Gdx.graphics.getWidth() - LOGO_WIDTH)/2,
-                (Gdx.graphics.getHeight() - logoHeight)/2,
+                (Gdx.graphics.getWidth() - LOGO_WIDTH) / 2,
+                (Gdx.graphics.getHeight() - logoHeight) / 2,
                 LOGO_WIDTH,
                 logoHeight);
         for (int i = effects.size - 1; i >= 0; i--) {
@@ -58,12 +60,12 @@ public class UdacityScreen extends InputAdapter implements Screen {
         batch.end();
     }
 
-    private void clearScreen(Color color){
+    private void clearScreen(Color color) {
         Gdx.gl.glClearColor(color.r, color.g, color.b, color.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
-    private void spawnParticleEffect(int x, int y){
+    private void spawnParticleEffect(int x, int y) {
         PooledEffect effect = touchEffectPool.obtain();
         effect.setPosition(x, Gdx.graphics.getHeight() - y);
         effects.add(effect);
@@ -108,6 +110,5 @@ public class UdacityScreen extends InputAdapter implements Screen {
         for (int i = effects.size - 1; i >= 0; i--)
             effects.get(i).free();
         effects.clear();
-
     }
 }
