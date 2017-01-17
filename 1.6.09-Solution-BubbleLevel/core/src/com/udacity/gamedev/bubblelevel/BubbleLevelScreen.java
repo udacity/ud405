@@ -75,6 +75,7 @@ public class BubbleLevelScreen extends ScreenAdapter {
 
 
         float totalAcceleration = (float) Math.sqrt(xAxis * xAxis + yAxis * yAxis + zAxis * zAxis);
+        totalAcceleration += 0.00001f;
 
         maxAcceleration = Math.max(maxAcceleration, totalAcceleration);
         minAcceleration = Math.min(minAcceleration, totalAcceleration);
