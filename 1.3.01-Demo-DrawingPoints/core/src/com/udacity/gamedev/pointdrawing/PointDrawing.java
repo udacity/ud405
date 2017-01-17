@@ -8,22 +8,22 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 /**
  * TODO: Start here to learn more about ApplicationListener and ShapeRenderer
- *
+ * <p>
  * In this demo we're exploring ApplicationListener and ShapeRenderer. ApplicationListener is the
  * entry point into your code. To get some insight into the lifecycle of this object, we've inserted
  * log messages in each of the six required methods.
- *
+ * <p>
  * Logging is provided by the host application, and will appear in whatever output stream makes
  * sense for that application. For the desktop version, it'll be console output, for the Android
  * version, it'll go through the usual Android LogCat system.
- *
+ * <p>
  * After browsing through this file, try running the game! You can run the desktop version by
  * opening up the terminal at the bottom of the window, and running:
- *
+ * <p>
  * $ ./gradlew desktop:run
- *
+ * <p>
  * There's a point on screen! And log messages showing the lifecycle of the ApplicationListener.
- *
+ * <p>
  * Aside: Sorry for the abuse of Javadoc comments. Android Studio does a nice job hard wrapping
  * them.
  */
@@ -61,10 +61,9 @@ public class PointDrawing implements ApplicationListener {
      * momentary freeze, which players hate with a burning passion. LibGDX does two things to avoid
      * this. First, there are a number of places where we need to manage our own memory. Since we
      * created a ShapeRenderer, we also need to dispose of it, as shown below.
-     *
+     * <p>
      * The other way LibGDX avoids garbage collection hangs is by providing a ton of custom
      * collections that cleverly manage memory. We'll be using some of those soon.
-     *
      */
     @Override
     public void dispose() {
