@@ -40,7 +40,7 @@ public class Boulder {
 
     public void update(float delta){
         // TODO: Apply gravitational acceleration to the vertical velocity
-        velocity.y += delta * GRAVITY;
+        velocity.y += GRAVITY;
 
         position.x += delta * velocity.x;
         position.y += delta * velocity.y;
