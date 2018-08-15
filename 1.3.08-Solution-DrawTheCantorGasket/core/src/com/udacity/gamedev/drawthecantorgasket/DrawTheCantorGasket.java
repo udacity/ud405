@@ -83,7 +83,7 @@ public class DrawTheCantorGasket extends ApplicationAdapter {
         // Thanks to GitHub user khafan! https://github.com/khafan
 
 //        for (int i = 0; i < 9; i++) {
-//            if (i == 4) continue;
+//            if (i == RECURSIONS -1) continue;
 //            punchCantorGasket(i%3 * newSize + x, i/3 * newSize + y, newSize, recursions);
 //        }
     }
