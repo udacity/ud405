@@ -60,9 +60,13 @@ public class DragonCurveGenerator {
         Vector2 head = new Vector2(width/2, height/2);
         Vector2 heading = new Vector2(5, 0);
 
-        float[] curve = new float[(turns.size() + 1) * 2];
+        float[] curve = new float[(turns.size() + 2) * 2];
 
         int i = 0;
+        curve[i++] = head.x;
+        curve[i++] = head.y;
+        head.x += heading.x;
+        head.y += heading.y;
         curve[i++] = head.x;
         curve[i++] = head.y;
 
