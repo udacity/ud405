@@ -1,5 +1,4 @@
 android {
-    buildToolsVersion "25.0.2"
     compileSdkVersion 25
     sourceSets {
         main {
@@ -12,7 +11,11 @@ android {
             jniLibs.srcDirs = ['libs']
         }
 
-        instrumentTest.setRoot('tests')
+        androidTest.setRoot('tests')
+    }
+    defaultConfig {
+        targetSdkVersion 20
+        minSdkVersion 8
     }
 }
 
