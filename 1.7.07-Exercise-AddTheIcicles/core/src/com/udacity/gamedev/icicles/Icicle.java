@@ -19,7 +19,7 @@ public class Icicle {
     }
 
     public void update(float delta) {
-        // TODO: Update velocity using icicle accelration constant
+        // TODO: Update velocity using icicle acceleration constant
 
 
         // TODO: Update position using velocity
